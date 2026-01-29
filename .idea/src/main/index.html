@@ -2,9 +2,170 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <title>Investigating Keupstraße</title>
+
+
+    <style>
+
+        .body-text {
+            font-family: 'Vend Sans', sans-serif;
+            font-weight: 350;
+            color: black;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color:red;
+        }
+        a:visited {
+            color:black;
+        }
+
+        table, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td {
+           padding: 30px;
+            width: 250px;
+            text-align: left;
+        }
+        .td-bottom {
+            text-align: center;
+        }
+        .main-table {
+            position: relative;
+            top: 80px;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .header {
+            font-family: 'Vend Sans', sans-serif;
+            font-weight: 350;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+        }
+
+        .header-link {
+            position: absolute;
+            right: 20px;
+            color: rgb(58, 90, 165);
+            text-decoration: none;
+
+        }
+        .header-link:visited {
+            color: rgb(58, 90, 165);
+        }
+
+        .icon {
+            position: fixed;
+            left: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            overflow: hidden;
+            transition: left 0.3s ease;
+            padding-top: 100px;
+            padding-left: 20px;
+            font-family: 'Vend Sans', sans-serif;
+            font-size: 17px;
+            z-index: 1000;
+
+        }
+        .navbar a {
+            display: block;
+        }
+
+        .navbar a:hover {
+            color:rgb(58, 90 , 165);
+        }
+        .navbar.open {
+            left: 0;
+            border-right: 1px solid rgb(58, 90, 165);
+        }
+        .navbar-header{
+            color:rgb(58, 90 , 165);
+        }
+    </style>
 </head>
+
+
 <body>
+
+<div class="header">
+    SYSTEM FAILURE IN KEUPSTRASSE
+    <a class="header-link" target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT US</a>
+</div>
+<div class="icon" onclick="toggleNavbar()">☰</div>
+<div class="navbar" id="navbar">
+    <div class="navbar-header">Investigations</div>
+    <a href="#link1">LINK</a>
+    <a href="#link2">LINK</a>
+    <a href="#link3">LINK</a>
+    <br>
+    <div class="navbar-header">Programme</div>
+    <a href="#link4">LINK</a>
+    <a href="#link5">LINK</a>
+    <a href="#link6">LINK</a>
+    <br>
+    <div class="navbar-header">About</div>
+    <a href="#link7">LINK</a>
+    <a href="#link8">LINK</a>
+    <a href="#link9">LINK</a>
+</div>
+<div class="main-table" id="main-table">
+    <table class="body-text td-bottom">
+        <tr>
+        <td>DATE OF INCIDENT
+            <p> 09.06.2004</p>
+        </td>
+
+            <td>LOCATION
+            <p>Keupstraße, Cologne</p>
+            </td>
+            <td>PPUBLICATION DATE
+            <p>20 JAN 2026</p>
+            </td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+        </tr>
+        <tr >
+            <td class="td-bottom">Data 4</td>
+            <td class="td-bottom">Data 5</td>
+            <td class="td-bottom">Data 6</td>
+        </tr>
+    </table>
+</div>
+<script>
+    function toggleNavbar() {
+        const navbar = document.getElementById('navbar');
+        navbar.classList.toggle('open');
+    }
+</script>
 
 </body>
 </html>
