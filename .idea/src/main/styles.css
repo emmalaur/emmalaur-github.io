@@ -1,0 +1,112 @@
+.body-text {
+    font-family: 'Vend Sans', sans-serif;
+    font-weight: 350;
+    color: black;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    color:rgb(58, 90, 165);
+}
+a:visited {
+    color:black;
+}
+
+table, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+td {
+    padding: 15px;
+    width: 250px;
+    text-align: left;
+}
+td a:hover {
+    color:rgb(58, 90, 165);
+}
+
+.td-bottom {
+    text-align: center;
+}
+
+.td-bottom-documentary {
+    background-color: rgb(58, 90, 165);
+    display: block;
+    text-align: center;
+    color: white !important;
+    padding: 15px;
+}
+.td-bottom-documentary:hover {
+    color: white !important;
+    padding: 30px;
+    margin: -15px;
+}
+
+.main-table {
+    position: relative;
+    top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    font-family: 'Vend Sans', sans-serif;
+    font-weight: 350;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.header-link {
+    position: absolute;
+    right: 20px;
+    color: rgb(58, 90, 165);
+    text-decoration: none;
+
+}
+.header-link:visited {
+    color: rgb(58, 90, 165);
+}
+
+.icon {
+    position: fixed;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+    transition: left 0.3s ease;
+    padding-top: 100px;
+    padding-left: 20px;
+    font-family: 'Vend Sans', sans-serif;
+    font-size: 17px;
+    z-index: 1000;
+}
+.navbar a {
+    display: block;
+}
+.navbar a:hover {
+    color:rgb(58, 90 , 165);
+}
+.navbar.open {
+    left: 0;
+    border-right: 1px solid rgb(58, 90, 165);
+}
+.navbar-header{
+    color:rgb(58, 90 , 165);
+}
