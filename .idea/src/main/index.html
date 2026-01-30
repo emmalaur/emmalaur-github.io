@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="main.js"></script>
+    <script src="timeline.js"></script>
     <title>Investigating Keupstraße</title>
 </head>
 
 <body>
 <div class="header">
     SYSTEM FAILURE IN KEUPSTRASSE
-    <a class="header-link" target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT US</a>
+    <a class="header-link" target="_blank" rel="noopener noreferrer"
+       href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT US</a>
 </div>
 <div class="icon" onclick="toggleNavbar()">☰</div>
 <div class="navbar" id="navbar">
@@ -35,36 +38,115 @@
 <div class="main-table" id="main-table">
     <table class="body-text td-bottom">
         <tr>
-        <td>DATE OF INCIDENT
-            <p> 09.06.2004</p>
-        </td>
+            <td>DATE OF INCIDENT
+                <p> 09.06.2004</p>
+            </td>
             <td>LOCATION
-            <p>Keupstraße, Cologne</p>
+                <p>Keupstraße, Cologne</p>
             </td>
             <td>PPUBLICATION DATE
-            <p>20 JAN 2026</p>
+                <p>20 JAN 2026</p>
             </td>
         </tr>
         <tr>
             <td class="partnership-cell">IN PARTNERSHIP WITH <br>
 
-             <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/">Initiative Keupstraße ist überall</a>, <a target="_blank" rel="noopener noreferrer" href="https://coco.study/">Code & Context</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/">Initiative
+                    Keupstraße ist überall</a>, <a target="_blank" rel="noopener noreferrer" href="https://coco.study/">Code
+                    & Context</a>
             </td>
             <td>ADDITIONAL FUNDING
-            <p>None</p>
+                <p>None</p>
             </td>
             <td>COLLABORATORS
-            <p>None</p>
+                <p>None</p>
             </td>
         </tr>
-        <tr >
-            <td class="td-bottom">TIME LINE</td>
+        <tr>
+            <td>METHOLOGIES
+                <p> 09.06.2004</p>
+            </td>
+            <td>FORUMS
+                <p>None</p>
+            </td>
+            <td>EXHIBITIONS
+                <p>Schanzenstraße 22, Cologne</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-bottom" onclick="openTimeline()" >TIME LINE</td>
             <td class="td-bottom">
-                <a class="td-bottom-documentary" target="_blank" rel="noopener noreferrer" href="https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/">WATCH DOCUMENTARY</a>
+                <a class="td-bottom-documentary" target="_blank" rel="noopener noreferrer"
+                   href="https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/">WATCH
+                    DOCUMENTARY</a>
             </td>
             <td class="td-bottom">MEDIA & RECOURCES</td>
         </tr>
     </table>
+</div>
+<div class="timeline-preview-section">
+
+    <div class="timeline-preview-container" id="timelinePreviewContainer" onclick="openTimeline()">
+        <div class="timeline-preview-content" id="timelinePreviewContent">
+            <!-- Preview nodes will be populated here -->
+        </div>
+    </div>
+</div>
+
+<div class="written-content">
+    <h1 class="written-content title">Introduction</h1> <br>
+    <p class="written-content body-text"> Lorem Impossum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor
+        incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+    <h1 class="written-content title">Background</h1> <br>
+    <p class="written-content body-text"> Lorem Impossum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor
+        incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+    <h1 class="written-content title">Conclusion</h1> <br>
+    <p class="written-content body-text"> Lorem Impossum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor
+        incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+</div>
+
+<div class="footer">
+    © 2026 Investigating Keupstraße. All rights reserved.
+</div>
+<div class="timeline-overlay" id="timelineOverlay" onclick="closeTimeline()"></div>
+
+<div class="timeline-container" id="timelineContainer">
+    <div class="timeline-header">
+        <h2>Keupstraße Timeline</h2>
+        <div class="timeline-close" onclick="closeTimeline()">×</div>
+    </div>
+
+    <div class="timeline-grid">
+        <!-- Y-axis (vertical categories) -->
+        <div class="timeline-y-axis" id="timelineYAxis">
+            <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- X-axis (horizontal timeline) -->
+        <div class="timeline-x-axis" id="timelineXAxis">
+            <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Main content area where nodes and items appear -->
+        <div class="timeline-content" id="timelineContent">
+            <!-- Timeline nodes and expanded items will be placed here -->
+        </div>
+    </div>
 </div>
 </body>
 </html>
