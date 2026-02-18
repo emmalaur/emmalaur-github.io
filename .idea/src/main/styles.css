@@ -98,11 +98,14 @@ td a:hover {
 }
 
 .icon {
+    color: black;
     position: fixed;
     left: 10px;
+    top: 10px;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 2001;
+    pointer-events: auto;
 }
 
 .navbar {
@@ -114,7 +117,7 @@ td a:hover {
     height: 100%;
     overflow: hidden;
     transition: left 0.3s ease;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-left: 20px;
     font-family: 'Vend Sans', sans-serif;
     font-size: 17px;
@@ -424,3 +427,4 @@ td a:hover {
 .timeline-preview-node:hover::after {
     opacity: 1;
 }
+
