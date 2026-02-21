@@ -567,22 +567,10 @@ function openTimelineItem(itemId) {
     expandedItem.className = 'timeline-item';
     expandedItem.id = `timeline-item-${itemId}`;
 
-    // Position near the node but ensure it stays within viewport
-    const node = document.querySelector(`.timeline-node[data-id="${itemId}"]`);
-    if (node) {
-        const nodeRect = node.getBoundingClientRect();
-        const contentRect = contentArea.getBoundingClientRect();
-
-        let left = nodeRect.left - contentRect.left + contentArea.scrollLeft - 150;
-        let top = nodeRect.top - contentRect.top + contentArea.scrollTop;
-
-        // Ensure item stays within bounds
-        left = Math.max(10, Math.min(left, contentArea.scrollWidth - 320));
-        top = Math.max(10, Math.min(top, contentArea.scrollHeight - 200));
-
-        expandedItem.style.left = `${left}px`;
-        expandedItem.style.top = `${top}px`;
-    }
+    expandedItem.style.position = 'fixed';
+    expandedItem.style.top = '50%';
+    expandedItem.style.left = '50%';
+    expandedItem.style.transform = 'translate(-50%, -50%)';
 
     // Display date nicely
     const displayDate = itemData.dateRange || new Date(itemData.date).toLocaleDateString('en-US', {
