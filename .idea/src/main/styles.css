@@ -267,17 +267,21 @@ td a:hover {
     background: rgb(40, 70, 140);
 }
 
-/* Timeline Item (Expanded Content) */
 .timeline-item {
-    position: absolute;
+    position: fixed; /* important */
+    top: 50%;
+    left: 50%;
     background: white;
-    border: 1px solid rgb(58, 90, 165);
+    border: 2px solid rgb(58, 90, 165);
     border-radius: 8px;
-    padding: 20px;
-    min-width: 300px;
-    max-width: 400px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 10;
+    padding: 30px;
+    min-width: 320px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    z-index: 3000;
+
 }
 
 .timeline-item-content {
