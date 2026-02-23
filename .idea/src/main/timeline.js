@@ -1,4 +1,4 @@
-// Timeline Data Structure - Now with category and date only (no hardcoded positions)
+
 const timelineData = [
     {
         id: 1,
@@ -12,7 +12,8 @@ const timelineData = [
                 url: "path/to/image.jpg",
                 alt: "Keupstraße after the attack"
             }
-        }
+        },
+        source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s"
     },
     {
         id: 2,
@@ -268,6 +269,7 @@ const timelineData = [
             text: "Authorities receive a tip about potential NSU involvement but fail to act.",
             media: null
         },
+        source: "https://img.welt.de/img/politik/deutschland/mobile128843319/8872646637-ci16x9-w1200/ARCHIV-Mit-diesen-Fotos-aus-einer-ber.jpg"
     },
     {
         id: 25,
@@ -285,9 +287,9 @@ const timelineData = [
 const timelineConfig = {
     startYear: 2004,
     endYear: 2011,
-    yearsPerGrid: 1, // Show every year
-    categoryHeight: 80, // Pixels per category row
-    yearWidth: 150, // Pixels per year
+    yearsPerGrid: 1,
+    categoryHeight: 80,
+    yearWidth: 179,
     marginTop: 50,
     marginLeft: 150,
     nodeRadius: 15
@@ -309,11 +311,11 @@ const timelineCategories = [
 // DOM Elements
 let activeTimelineItem = null;
 let currentHighlight = {
-    type: null, // 'category', 'year', or null
+    type: null,
     value: null
 };
 
-// Initialize Timeline
+
 function initTimeline() {
     populateYAxis();
     populateXAxis();
@@ -322,33 +324,28 @@ function initTimeline() {
     setupScrollSync();
 }
 
-// Calculate position based on category and date
+//FUER KJELL UND KONRAD -> ich verstehe nicht warum die Nodes out of bound sind.
+// es scheint als wäre der abstand zwischen den nodes selbst richtig aber nicht in relation zu den daten (nur place holder daten bis das technische stimmt)
+
 function calculateNodePosition(category, dateString) {
-    // Y position based on category index
+
     const categoryIndex = timelineCategories.indexOf(category);
     const yPos = timelineConfig.marginTop + (categoryIndex * timelineConfig.categoryHeight);
 
-    // X position based on date
-    let year;
-    if (dateString.includes('-')) {
-        // Handle ISO format
-        year = new Date(dateString).getFullYear();
-    } else {
-        // Handle other formats (fallback)
-        year = parseInt(dateString.split('-')[0]) || parseInt(dateString);
-    }
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = date.getMonth(); // 0 = January, 11 = December
 
-    // Ensure year is within bounds
-    year = Math.max(timelineConfig.startYear, Math.min(timelineConfig.endYear, year));
+    const clampedYear = Math.max(timelineConfig.startYear, Math.min(timelineConfig.endYear, year));
 
-    // Calculate X position
-    const yearOffset = (year - timelineConfig.startYear) * timelineConfig.yearWidth;
-    const xPos = timelineConfig.marginLeft + yearOffset;
+    const yearOffset = (clampedYear - timelineConfig.startYear) * timelineConfig.yearWidth;
+    const monthOffset = (timelineConfig.yearWidth / 12) * month;
+    const xPos = (clampedYear === timelineConfig.startYear ? 0 : timelineConfig.marginLeft) + yearOffset + monthOffset;
 
     return { xPos, yPos };
 }
 
-// Calculate and store positions for all nodes
+
 function calculateAllNodePositions() {
     timelineData.forEach(item => {
         const { xPos, yPos } = calculateNodePosition(item.category, item.date);
@@ -357,7 +354,7 @@ function calculateAllNodePositions() {
     });
 }
 
-// Populate Y-axis with categories
+
 function populateYAxis() {
     const yAxis = document.getElementById('timelineYAxis');
     yAxis.innerHTML = '';
@@ -372,16 +369,16 @@ function populateYAxis() {
     });
 }
 
-// Populate X-axis with dates
+
 function populateXAxis() {
     const xAxis = document.getElementById('timelineXAxis');
     xAxis.innerHTML = '';
 
-    // Calculate total width needed
+
     const totalYears = timelineConfig.endYear - timelineConfig.startYear;
     xAxis.style.minWidth = `${totalYears * timelineConfig.yearWidth + timelineConfig.marginLeft}px`;
 
-    // Create year markers
+
     for (let year = timelineConfig.startYear; year <= timelineConfig.endYear; year += timelineConfig.yearsPerGrid) {
         const item = document.createElement('div');
         item.className = 'x-axis-item';
@@ -393,19 +390,18 @@ function populateXAxis() {
     }
 }
 
-// Create timeline nodes
 function populateTimelineNodes() {
     const contentArea = document.getElementById('timelineContent');
     contentArea.innerHTML = '';
 
-    // Set content area dimensions
-    const maxX = Math.max(...timelineData.map(item => item.xPos)) + 100;
-    const maxY = Math.max(...timelineData.map(item => item.yPos)) + 100;
+
+    const maxX = Math.max(...timelineData.map(item => item.xPos)) ;
+    const maxY = Math.max(...timelineData.map(item => item.yPos)) ;
     contentArea.style.minWidth = `${maxX}px`;
     contentArea.style.minHeight = `${maxY}px`;
 
     timelineData.forEach(item => {
-        // Create node
+
         const node = document.createElement('div');
         node.className = 'timeline-node';
         node.style.left = `${item.xPos}px`;
@@ -414,7 +410,7 @@ function populateTimelineNodes() {
         node.setAttribute('data-category', item.category);
         node.setAttribute('data-year', new Date(item.date).getFullYear());
 
-        // Add tooltip
+
         const displayDate = item.dateRange || new Date(item.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -422,7 +418,7 @@ function populateTimelineNodes() {
         });
         node.title = `${displayDate}: ${item.title}`;
 
-        // Add click handler
+
         node.onclick = (e) => {
             e.stopPropagation();
             openTimelineItem(item.id);
@@ -431,25 +427,26 @@ function populateTimelineNodes() {
         contentArea.appendChild(node);
     });
 
-    // Apply any existing highlight
+
     if (currentHighlight.type) {
         applyHighlight();
     }
 }
 
-// Synchronize scrolling between axes and content
+////FUER KJELL UND KONRAD
+// dieser Teil klappt so semi gut (dient der scrolling synchronisierung zwischen y/x achse und node inhalt)
 function setupScrollSync() {
     const contentArea = document.getElementById('timelineContent');
     const xAxis = document.getElementById('timelineXAxis');
     const yAxis = document.getElementById('timelineYAxis');
 
-    // Update axes when content scrolls
+
     contentArea.addEventListener('scroll', () => {
         xAxis.scrollLeft = contentArea.scrollLeft;
         yAxis.scrollTop = contentArea.scrollTop;
     });
 
-    // Update content when axes scroll
+
     xAxis.addEventListener('scroll', () => {
         contentArea.scrollLeft = xAxis.scrollLeft;
     });
@@ -459,13 +456,12 @@ function setupScrollSync() {
     });
 }
 
-// Toggle category highlight
+
 function toggleCategoryHighlight(category) {
     if (currentHighlight.type === 'category' && currentHighlight.value === category) {
-        // Clear highlight if same category clicked
+
         clearHighlights();
     } else {
-        // Set new category highlight
         currentHighlight = {
             type: 'category',
             value: category
@@ -474,13 +470,13 @@ function toggleCategoryHighlight(category) {
     }
 }
 
-// Toggle year highlight
+
 function toggleYearHighlight(year) {
     if (currentHighlight.type === 'year' && currentHighlight.value === year) {
-        // Clear highlight if same year clicked
+
         clearHighlights();
     } else {
-        // Set new year highlight
+
         currentHighlight = {
             type: 'year',
             value: year
@@ -489,9 +485,9 @@ function toggleYearHighlight(year) {
     }
 }
 
-// Apply current highlight to nodes and axes
+
 function applyHighlight() {
-    // Clear all previous highlight classes
+
     document.querySelectorAll('.y-axis-item, .x-axis-item').forEach(item => {
         item.classList.remove('active-highlight');
     });
@@ -502,16 +498,14 @@ function applyHighlight() {
 
     if (!currentHighlight.type) return;
 
-    // Apply highlight based on type
     if (currentHighlight.type === 'category') {
-        // Highlight the category on Y-axis
+
         document.querySelectorAll('.y-axis-item').forEach(item => {
             if (item.getAttribute('data-category') === currentHighlight.value) {
                 item.classList.add('active-highlight');
             }
         });
 
-        // Highlight nodes of that category
         document.querySelectorAll('.timeline-node').forEach(node => {
             if (node.getAttribute('data-category') === currentHighlight.value) {
                 node.classList.add('highlighted');
@@ -519,14 +513,14 @@ function applyHighlight() {
         });
     }
     else if (currentHighlight.type === 'year') {
-        // Highlight the year on X-axis
+
         document.querySelectorAll('.x-axis-item').forEach(item => {
             if (parseInt(item.getAttribute('data-year')) === currentHighlight.value) {
                 item.classList.add('active-highlight');
             }
         });
 
-        // Highlight nodes from that year
+
         document.querySelectorAll('.timeline-node').forEach(node => {
             if (parseInt(node.getAttribute('data-year')) === currentHighlight.value) {
                 node.classList.add('highlighted');
@@ -535,25 +529,25 @@ function applyHighlight() {
     }
 }
 
-// Clear all highlights
+
 function clearHighlights() {
     currentHighlight = {
         type: null,
         value: null
     };
 
-    // Remove highlight classes from axes
+
     document.querySelectorAll('.y-axis-item, .x-axis-item').forEach(item => {
         item.classList.remove('active-highlight');
     });
 
-    // Remove highlight classes from nodes
+
     document.querySelectorAll('.timeline-node').forEach(node => {
         node.classList.remove('highlighted');
     });
 }
 
-// Open timeline item
+
 function openTimelineItem(itemId) {
     closeTimelineItem();
 
@@ -562,27 +556,46 @@ function openTimelineItem(itemId) {
 
     const contentArea = document.getElementById('timelineContent');
 
-    // Create expanded item
+
     const expandedItem = document.createElement('div');
     expandedItem.className = 'timeline-item';
     expandedItem.id = `timeline-item-${itemId}`;
 
-    expandedItem.style.position = 'fixed';
-    expandedItem.style.top = '50%';
-    expandedItem.style.left = '50%';
-    expandedItem.style.transform = 'translate(-50%, -50%)';
 
-    // Display date nicely
+    expandedItem.style.top = '200px';
+    expandedItem.style.left = '500px';
+
+
+
     const displayDate = itemData.dateRange || new Date(itemData.date).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     });
 
-    // Create content
+
     const contentHTML = `
         <div class="timeline-item-content">
-            <h3>${itemData.title}</h3>
+        
+        <table>
+            <tr> 
+             <td class="timeline-item-date"> ${itemData.title}, ${displayDate}, ${itemData.category}</td>
+             <td rowspan="2"> ${renderMedia(itemData.content.media)} </td>
+            </tr> 
+            <tr>
+             <td class="timeline-item-text">${itemData.content.text}</td>
+            </tr>
+            <tr>
+               <td colspan="2">${itemData.source} </td>
+             </tr>
+</tr>
+            
+            
+            
+             
+        
+         </table>
+             <h3>${itemData.title}</h3>
             <div class="timeline-item-date">${displayDate}</div>
             <div class="timeline-item-category">${itemData.category}</div>
             <div class="timeline-item-text">${itemData.content.text}</div>
@@ -592,7 +605,7 @@ function openTimelineItem(itemId) {
 
     expandedItem.innerHTML = contentHTML;
 
-    // Add close button
+
     const closeBtn = document.createElement('button');
     closeBtn.className = 'timeline-item-close';
     closeBtn.innerHTML = '×';
@@ -605,13 +618,13 @@ function openTimelineItem(itemId) {
     contentArea.appendChild(expandedItem);
     activeTimelineItem = itemId;
 
-    // Close when clicking outside
+
     setTimeout(() => {
         document.addEventListener('click', closeTimelineItemOnClickOutside);
     }, 100);
 }
 
-// Render media based on type
+
 function renderMedia(media) {
     if (!media || !media.type) return '';
 
@@ -643,7 +656,6 @@ function renderMedia(media) {
     }
 }
 
-// Close timeline item
 function closeTimelineItem() {
     if (activeTimelineItem) {
         const item = document.getElementById(`timeline-item-${activeTimelineItem}`);
@@ -653,14 +665,14 @@ function closeTimelineItem() {
     document.removeEventListener('click', closeTimelineItemOnClickOutside);
 }
 
-// Close timeline item when clicking outside
+
 function closeTimelineItemOnClickOutside(e) {
     if (activeTimelineItem && !e.target.closest('.timeline-item') && !e.target.closest('.timeline-node')) {
         closeTimelineItem();
     }
 }
 
-// Open/Close timeline
+
 function openTimeline() {
     const container = document.getElementById('timelineContainer');
     const overlay = document.getElementById('timelineOverlay');
@@ -668,7 +680,7 @@ function openTimeline() {
     container.classList.add('open');
     overlay.classList.add('active');
 
-    // Initialize timeline if not already done
+
     if (!container.dataset.initialized) {
         initTimeline();
         container.dataset.initialized = true;
@@ -682,10 +694,10 @@ function closeTimeline() {
     container.classList.remove('open');
     overlay.classList.remove('active');
     closeTimelineItem();
-    clearHighlights(); // Clear highlights when closing
+    clearHighlights();
 }
 
-// Close timeline with Escape key
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (document.getElementById('timelineContainer').classList.contains('open')) {
@@ -694,32 +706,30 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Initialize timeline preview
 function initTimelinePreview() {
     const previewContainer = document.getElementById('timelinePreviewContent');
     if (!previewContainer) return;
 
     previewContainer.innerHTML = '';
 
-    // Calculate positions for preview
     calculateAllNodePositions();
 
-    // Get container dimensions
+
     const containerWidth = previewContainer.clientWidth - 40;
     const containerHeight = previewContainer.clientHeight - 40;
 
-    // Find bounds
+
     const maxX = Math.max(...timelineData.map(item => item.xPos));
     const minX = Math.min(...timelineData.map(item => item.xPos));
 
-    // Calculate scale factor for X-axis
+
     const scaleX = containerWidth / (maxX - minX || 1);
 
     timelineData.forEach(item => {
         const previewNode = document.createElement('div');
         previewNode.className = 'timeline-preview-node';
 
-        // Scale and position
+
         const scaledX = ((item.xPos - minX) * scaleX) + 20;
         const randomY = Math.random() * containerHeight; // Randomize Y position
 
@@ -738,7 +748,6 @@ function initTimelinePreview() {
     });
 }
 
-// Handle window resize
 window.addEventListener('resize', () => {
     if (document.getElementById('timelineContainer').classList.contains('open')) {
         // Recalculate positions if timeline is open
@@ -747,7 +756,7 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Initialize when page loads
+
 document.addEventListener('DOMContentLoaded', () => {
     initTimelinePreview();
 });

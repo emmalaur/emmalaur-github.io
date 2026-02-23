@@ -25,4 +25,16 @@ async function loadMarkdown() {
     }
 }
 
+function openImageOverlay(imageSrc) {
+    const overlay = document.getElementById('imageOverlay');
+    const overlayImage = document.getElementById('overlayImage');
+    overlayImage.src = imageSrc;
+    overlay.classList.add('active');
+}
+
+function closeImageOverlay() {
+    const overlay = document.getElementById('imageOverlay');
+    overlay.classList.remove('active');
+}
+
 document.addEventListener('DOMContentLoaded', loadMarkdown);
