@@ -433,7 +433,7 @@ function populateTimelineNodes() {
     }
 }
 
-////FUER KJELL UND CONRAD
+//FUER KJELL UND CONRAD
 // dieser Teil klappt so semi gut (dient der scrolling synchronisierung zwischen y/x achse und node inhalt)
 function setupScrollSync() {
     const contentArea = document.getElementById('timelineContent');
