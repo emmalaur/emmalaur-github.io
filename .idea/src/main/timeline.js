@@ -324,7 +324,7 @@ function initTimeline() {
     setupScrollSync();
 }
 
-//FUER KJELL UND KONRAD -> ich verstehe nicht warum die Nodes out of bound sind.
+//FUER KJELL UND CONRAD -> ich verstehe nicht warum die Nodes out of bound sind.
 // es scheint als wäre der abstand zwischen den nodes selbst richtig aber nicht in relation zu den daten (nur place holder daten bis das technische stimmt)
 
 function calculateNodePosition(category, dateString) {
@@ -433,7 +433,7 @@ function populateTimelineNodes() {
     }
 }
 
-////FUER KJELL UND KONRAD
+////FUER KJELL UND CONRAD
 // dieser Teil klappt so semi gut (dient der scrolling synchronisierung zwischen y/x achse und node inhalt)
 function setupScrollSync() {
     const contentArea = document.getElementById('timelineContent');
