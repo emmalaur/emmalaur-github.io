@@ -15,7 +15,7 @@ document.addEventListener('click', closeNavbarOnClickOutside);
 
 async function loadMarkdown() {
     try {
-        const response = await fetch('../../../LICENSE.md');
+        const response = await fetch('../../../../LICENSE.md');
         const markdown = await response.text();
         const html = marked.parse(markdown);
         document.getElementById('licenseContent').innerHTML = html;
