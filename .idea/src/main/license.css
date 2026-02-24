@@ -1,15 +1,22 @@
+.full-license-page {
+    background: rgb(23, 61, 245);
+}
 .license-content {
     font-family: "DM Mono", monospace;
+    color: white;
+    background: rgb(23, 61, 245);
     font-weight: 300;
     font-style: normal;
     max-width: 800px;
     margin: 40px auto;
-    padding: 20px;
+    padding-top: 20px;
     line-height: 1.6;
+    padding-bottom: 0; !important;
+
 }
 
 .license-content h1 {
-    border-bottom: black 1px solid;
+    border-bottom: white 1px solid;
     padding-bottom: 10px;
     font-weight: 500;
 }

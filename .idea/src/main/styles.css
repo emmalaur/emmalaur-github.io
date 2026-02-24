@@ -47,6 +47,7 @@ td a:hover {
 
 .td-bottom {
     text-align: center;
+    cursor: pointer;
 }
 
 .td-bottom-documentary {
@@ -76,7 +77,8 @@ td a:hover {
     font-weight: 350;
     font-size: 20px;
     text-align: center;
-    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     margin-bottom: 20px;
     position: fixed;
     top: 0;
