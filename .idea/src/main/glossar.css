@@ -1,0 +1,30 @@
+
+body {
+    background: rgb(23, 61, 245);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px;
+}
+
+table, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 10px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    background: white;
+    color: rgb(23, 61, 245);
+}
+
+.main-glossar-table {
+    font-family: "DM Mono", monospace;
+    color: white;
+    border: 1px solid white;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 40px auto;
+}

@@ -202,13 +202,5 @@ td a:hover {
 .image-overlay.active {
     display: flex;
 }
-.contact-info {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    top: 320px;
-    margin: 0 auto;
-}
+
+
