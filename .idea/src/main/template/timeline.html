@@ -31,6 +31,23 @@
       padding: 48px 24px 80px;
     }
 
+    .form-table, .form-table td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 15px;
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+
+    .timeline-table, .timeline-table td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      padding:10px;
+    }
+
     #chart-wrap {
       width: 100%;
       height: 100%;
@@ -56,6 +73,59 @@
       /*stroke-dasharray: 4 4;*/
     }
 
+    .button-container {
+      display: flex;
+      gap: 10px; /* Space between buttons */
+      justify-content: center; /* Center the buttons */
+      margin-top: 20px; /* Add spacing from other elements */
+    }
+
+    #grid-toggle-btn {
+      margin-top: 28px;
+      background: none;
+      border: 1px solid rgb(23, 61, 245);
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+
+      margin-left: 10px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    #grid-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    #line-toggle-btn {
+      margin-top: 28px;
+      background: none;
+      border: 1px solid rgb(23, 61, 245);
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+
+      margin-left: 10px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    #line-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Add node button */
+    #add-btn {
+      margin-top: 28px;
+      background: none;
+      border: 1px solid  rgb(23, 61, 245);
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+
+      transition: border-color 0.2s, color 0.2s;
+    }
+    #add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
     /* Category labels */
     .cat-label {
       font-family: 'DM Mono', monospace;
@@ -79,19 +149,21 @@
     .node-circle {
       cursor: pointer;
       transition: r 0.15s ease, filter 0.15s ease;
-      filter: drop-shadow(0 0 4px transparent);
     }
     .node-circle:hover {
       filter: drop-shadow(0 0 8px currentColor);
     }
+
     .node-pulse {
       pointer-events: none;
       opacity: 0;
+    }
+    .node-pulse.pulsing {
       animation: pulse 2s ease-out infinite;
     }
     @keyframes pulse {
-      0% { r: 10; opacity: 0.6; }
-      100% { r: 22; opacity: 0; }
+      0% { r: 20; opacity: 0.6; }
+      100% { r: 36; opacity: 0; }
     }
 
     /* Popup overlay */
@@ -99,37 +171,34 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.65);
+      background: rgba(0,0,0,0.15);
       z-index: 100;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(4px);
       animation: fadeIn 0.2s ease;
     }
     #overlay.open { display: flex; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     #popup {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: white;
       max-width: 560px;
       width: 90%;
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
       animation: slideUp 0.22s cubic-bezier(.22,.68,0,1.2);
       position: relative;
     }
     @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     #popup-header {
+      background: rgb(23, 61, 245);;
+     font: white;
       padding: 6px 16px;
       font-family: 'DM Mono', monospace;
-      font-size: 10px;
+      font-size: 15px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #0e0e0f;
-      font-weight: 500;
+
     }
 
     #close-btn {
@@ -146,84 +215,62 @@
     }
     #close-btn:hover { opacity: 1; }
 
-    /* Table styles */
-    .timeline-table {
-      width: 100%;
-      border-collapse: collapse;
+    .timeline-popup-header {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: black;
+      padding: 8px 16px;
+      border-bottom: 1px solid black;
     }
 
     .timeline-item-date {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
-      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      color: black;
       padding: 16px 16px 8px;
       vertical-align: top;
       line-height: 1.4;
+      border-bottom: 1px solid black;  /* ← added */
     }
+
+    .timeline-item-date-sub {
+      font-size: 0.75rem;
+      color: #6b6a68;
+      font-weight: 300;
+    }
+
+
 
     .timeline-item-text {
       font-size: 0.875rem;
-      color: #b0aea9;
-      padding: 0 16px 16px;
-      line-height: 1.6;
-      vertical-align: top;
+      color: black;
+
     }
 
     .media-cell {
-      padding: 16px 16px 16px 0;
-      vertical-align: top;
-      width: 160px;
-    }
-
-    .media-cell img {
-      width: 148px;
-      height: 148px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid var(--border);
       display: block;
     }
 
+    .media-cell img {
+      justify-content: center;
+      border: none;
+
+    }
     .source-cell {
-      padding: 10px 16px;
       font-family: 'DM Mono', monospace;
       font-size: 10px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
+      color: black;
       word-break: break-all;
     }
 
-    .source-cell a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+
     .source-cell a:hover { text-decoration: underline; }
 
-    /* Add node button */
-    #add-btn {
-      margin-top: 28px;
-      background: none;
-      border: 1px solid  rgb(23, 61, 245);
-      color: black;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      padding: 10px 20px;
-      cursor: pointer;
-      letter-spacing: 0.08em;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    #add-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-
-    table, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-      padding: 15px;
-      color: black;
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
-    }
 
     /* Add Node Modal */
     #form-overlay {
@@ -248,7 +295,6 @@
 
     }
 
-
     #form-close-btn {
       background: none;
       border: none;
@@ -271,7 +317,6 @@
       flex-direction: column;
       gap: 5px;
     }
-
 
     .form-field input,
     .form-field textarea,
@@ -307,8 +352,6 @@
     }
     .btn-send:hover { border-color: var(--muted); color: var(--text); }
 
-
-
   </style>
 </head>
 <body>
@@ -318,8 +361,12 @@
   <svg id="timeline"></svg>
 </div>
 
-<div class="legend" id="legend"></div>
-<button id="add-btn" onclick="openAddForm()">+ Add Event</button>
+<div class="button-container">
+  <button id="add-btn" onclick="openAddForm()">Add Event</button>
+  <button id="grid-toggle-btn" onclick="toggleGrid()">Hide Grid</button>
+  <button id="line-toggle-btn" onclick="toggleLines()">Hide Lines</button>
+
+</div>
 
 <!-- Add Node Modal -->
 <div id="form-overlay">
@@ -410,6 +457,7 @@
 
   // ─── SAMPLE DATA ─────────────────────────────────────────────────────────────
   let nodes = [
+
     {
       date: "2004-06-09",
       category: "NSU",
@@ -418,7 +466,11 @@
         text: "A nail bomb explodes in Keupstraße, injuring 22 people. The attack targets the Turkish and Kurdish community in Cologne.",
         media: { type: "image", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s", alt: "Keupstraße after the attack" }
       },
-      source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s"
+      source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s",
+      connections: [
+        { to: "NSU Uncovered", style: "solid" },
+        { to: "Dortmund Bombing", style: "dotted" }
+      ]
     },
     {
       date: "2004-06-09",
@@ -545,6 +597,38 @@
     g.appendChild(svgEl('line', { x1: 0, y1: innerH, x2: innerW, y2: innerH, stroke: '#3e3e44', 'stroke-width': 1 }));
 
     // Nodes
+    // ── Build a title→index lookup for connections ──
+    const titleIndex = {};
+    nodes.forEach((node, i) => { titleIndex[node.title] = i; });
+
+// ── Connections (drawn before nodes so lines sit underneath) ──
+    nodes.forEach((node, idx) => {
+      if (!node.connections) return;
+      const x1 = xScale(dateToYear(node.date));
+      const y1 = yScale(node.category);
+
+      node.connections.forEach(conn => {
+        const targetIdx = titleIndex[conn.to];
+        if (targetIdx === undefined) return;
+        const target = nodes[targetIdx];
+        const x2 = xScale(dateToYear(target.date));
+        const y2 = yScale(target.category);
+
+        const line = svgEl('line', {
+          x1, y1, x2, y2,
+          stroke: 'rgb(23, 61, 245)',
+          'stroke-width': 4,
+          'stroke-dasharray': conn.style === 'dotted' ? '6 4' : 'none',
+          'pointer-events': 'none',
+          class: 'tl-connection',
+          'data-from': idx,
+          'data-to': targetIdx,
+        });
+        g.appendChild(line);
+      });
+    });
+
+// Nodes
     nodes.forEach((node, idx) => {
       const x = xScale(dateToYear(node.date));
       const y = yScale(node.category);
@@ -552,21 +636,76 @@
 
       const ng = svgEl('g', { class: 'node-group', 'data-idx': idx });
 
-      // pulse ring
-      const pulse = svgEl('circle', { cx: x, cy: y, r: 20, fill: 'none', stroke: color, 'stroke-width': 2, class: 'node-pulse' });
+      const pulse = svgEl('circle', { cx: x, cy: y, r: 40, fill: 'none', stroke: color, 'stroke-width': 2, class: 'node-pulse' });
       ng.appendChild(pulse);
+
 
       // main circle
       const circle = svgEl('circle', {
         cx: x, cy: y, r: 20,
         fill: color,
         class: 'node-circle',
-
       });
       circle.style.color = color;
-      circle.addEventListener('click', () => openPopup(idx, color));
-      ng.appendChild(circle);
 
+      circle.addEventListener('click', () => openPopup(idx, color));
+
+      circle.addEventListener('mouseenter', () => {
+        const connectedIndices = new Set();
+        connectedIndices.add(idx); // include hovered node itself
+
+        if (node.connections) {
+          node.connections.forEach(conn => {
+            const ti = titleIndex[conn.to];
+            if (ti !== undefined) connectedIndices.add(ti);
+          });
+        }
+
+        nodes.forEach((otherNode, otherIdx) => {
+          if (!otherNode.connections) return;
+          otherNode.connections.forEach(conn => {
+            if (conn.to === node.title) connectedIndices.add(otherIdx);
+          });
+        });
+
+        // pulse connected nodes
+        connectedIndices.forEach(ci => {
+          const target = document.querySelector(`.node-group[data-idx="${ci}"] .node-pulse`);
+          if (target) target.classList.add('pulsing');
+        });
+
+        // dim all nodes NOT in the connected set
+        nodes.forEach((_, otherIdx) => {
+          if (connectedIndices.has(otherIdx)) return;
+          const otherCircle = document.querySelector(`.node-group[data-idx="${otherIdx}"] .node-circle`);
+          if (otherCircle) otherCircle.style.filter = 'brightness(0.35)';
+        });
+
+        // dim all lines NOT between highlighted nodes
+        document.querySelectorAll('.tl-connection').forEach(line => {
+          const from = parseInt(line.getAttribute('data-from'));
+          const to = parseInt(line.getAttribute('data-to'));
+          const isHighlighted = connectedIndices.has(from) && connectedIndices.has(to);
+          line.style.opacity = isHighlighted ? '1' : '0.1';
+        });
+      });
+
+      circle.addEventListener('mouseleave', () => {
+        // remove pulsing
+        document.querySelectorAll('.node-pulse.pulsing').forEach(el => {
+          el.classList.remove('pulsing');
+        });
+        // restore all nodes
+        document.querySelectorAll('.node-circle').forEach(el => {
+          el.style.filter = '';
+        });
+        // restore all lines
+        document.querySelectorAll('.tl-connection').forEach(el => {
+          el.style.opacity = '';
+        });
+      });
+
+      ng.appendChild(circle);
 
       g.appendChild(ng);
     });
@@ -579,7 +718,7 @@
   function renderMedia(media) {
     if (!media) return '';
     if (media.type === 'image') {
-      return `<img src="${media.url}" alt="${media.alt || ''}" onerror="this.style.display='none'">`;
+      return `<img src="${media.url}" alt="${media.alt || ''}" onerror="this.style.display='none'" >`;
     }
     return '';
   }
@@ -593,7 +732,6 @@
     const item = nodes[idx];
     const displayDate = formatDate(item.date);
     const header = document.getElementById('popup-header');
-    header.style.background = color;
     header.textContent = item.category;
 
     const mediaHTML = renderMedia(item.content.media);
@@ -601,18 +739,24 @@
 
     const table = document.getElementById('popup-table');
     table.innerHTML = `
-    <tr>
-      <td class="timeline-item-date">${item.title}<br><span style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);font-weight:300">${displayDate} · ${item.category}</span></td>
-      ${hasMedia ? `<td class="media-cell" rowspan="2">${mediaHTML}</td>` : ''}
-    </tr>
-    <tr>
-      <td class="timeline-item-text">${item.content.text}</td>
-    </tr>
-    <tr>
-      <td class="source-cell" colspan="${hasMedia ? 2 : 1}">
-        Source: <a href="${item.source}" target="_blank" rel="noopener">${item.source}</a>
-      </td>
-    </tr>
+
+  <tr>
+    <td class="timeline-item-date" colspan="4">
+      ${item.title}<br>
+      <span class="timeline-item-date-sub">${displayDate}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="timeline-item-text" rowspan="2" colspan="2">${item.content.text}</td>
+    ${hasMedia ? `<td class="media-cell" rowspan="2" colspan="2">${mediaHTML}</td>`
+            : '<td colspan="2" rowspan="2"></td>'}
+  </tr>
+  <tr></tr>
+  <tr>
+    <td class="source-cell" colspan="4">
+      Source: <a href="${item.source}">${item.source}</a>
+    </td>
+  </tr>
   `;
 
     document.getElementById('overlay').classList.add('open');
@@ -625,6 +769,27 @@
   document.getElementById('overlay').addEventListener('click', function(e) {
     if (e.target === this) closePopup();
   });
+
+  // ─── GRID TOGGLE ─────────────────────────────────────────────────────────────
+  let gridVisible = true;
+
+  function toggleGrid() {
+    gridVisible = !gridVisible;
+    document.querySelectorAll('.grid-line').forEach(el => {
+      el.style.display = gridVisible ? '' : 'none';
+    });
+    document.getElementById('grid-toggle-btn').textContent = gridVisible ? '⊞ Hide Grid' : '⊞ Show Grid';
+  }
+
+  let linesVisible = true;
+
+  function toggleLines() {
+    linesVisible = !linesVisible;
+    document.querySelectorAll('.tl-connection').forEach(el => {
+      el.style.display = linesVisible ? '' : 'none';
+    });
+    document.getElementById('line-toggle-btn').textContent = linesVisible ? '⌇ Hide Lines' : '⌇ Show Lines';
+  }
 
   // ─── ADD NODE FORM ────────────────────────────────────────────────────────────
   function openAddForm() {
