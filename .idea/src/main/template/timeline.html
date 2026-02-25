@@ -52,10 +52,11 @@
       width: 100%;
       height: 100%;
       background: white;
+      margin-top: 100px;
       padding: 32px 24px 24px;
       overflow-x: auto;
       position: relative;
-      padding-top: 200px;
+
       display: flex;
       justify-content: center;
       align-items: center;
@@ -70,14 +71,14 @@
     .grid-line {
       stroke: black;
       stroke-width: 1;
-      /*stroke-dasharray: 4 4;*/
+
     }
 
     .button-container {
       display: flex;
-      gap: 10px; /* Space between buttons */
-      justify-content: center; /* Center the buttons */
-      margin-top: 20px; /* Add spacing from other elements */
+      gap: 10px;
+      justify-content: center;
+
     }
 
     #grid-toggle-btn {
@@ -352,9 +353,26 @@
     }
     .btn-send:hover { border-color: var(--muted); color: var(--text); }
 
+    #line-example {
+      align-self: flex-start;
+      margin-left: 24px;
+    }
+
+    .line-example-table, .line-example-table td {
+        border: 1px solid black;
+        color: black;
+        border-collapse: collapse;
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        padding:10px;
+        margin-top: 40px;
+        max-width: 400px ;
+    }
+
   </style>
 </head>
 <body>
+
 
 
 <div id="chart-wrap">
@@ -365,8 +383,37 @@
   <button id="add-btn" onclick="openAddForm()">Add Event</button>
   <button id="grid-toggle-btn" onclick="toggleGrid()">Hide Grid</button>
   <button id="line-toggle-btn" onclick="toggleLines()">Hide Lines</button>
-
 </div>
+
+<div id="line-example">
+  <table  class="line-example-table">
+    <tr>
+      <td>LINE TYPE</td>
+      <td>MEANING</td>
+    </tr>
+    <tr>
+      <td>
+        <svg width="100" height="20"><line x1="0" y1="10" x2="100" y2="10" stroke="black" stroke-width="2"/></svg>
+      </td>
+      <td>
+        Full line — direct, confirmed connection: One event directly caused or triggered another
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <svg width="100" height="20"><line x1="0" y1="10" x2="100" y2="10" stroke="black" stroke-width="2" stroke-dasharray="4 4"/></svg>
+      </td>
+
+      <td>
+        Dashed line — indirect or suspected connection: One event may have contributed to another, but the relationship is not definitively established
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+
 
 <!-- Add Node Modal -->
 <div id="form-overlay">
