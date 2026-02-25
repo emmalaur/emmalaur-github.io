@@ -75,7 +75,9 @@
             </td>
         </tr>
         <tr>
-            <td class="td-bottom" onclick="openTimeline()" >TIME LINE</td>
+            <td class="td-bottom" >
+                <a href="timeline.html"> TIME LINE </a>
+            </td>
             <td class="td-bottom">
                 <a class="td-bottom-documentary" onclick="openImageOverlay('../../resources/projectDescription.png' )">PROJECT DESCRIPTION</a>
             </td>
@@ -83,14 +85,17 @@
         </tr>
     </table>
 </div>
-<div class="timeline-preview-section">
+<!--<div class="timeline-preview-section">
 
     <div class="timeline-preview-container" id="timelinePreviewContainer" onclick="openTimeline()">
         <div class="timeline-preview-content" id="timelinePreviewContent">
-            <!-- Preview nodes will be populated here -->
+            &lt;!&ndash; Preview nodes will be populated here &ndash;&gt;
         </div>
     </div>
-</div>
+</div>-->
+
+
+
 
 <div class="written-content">
     <h1 class="written-content title">Introduction</h1> <br>
@@ -125,23 +130,7 @@
 <div class="footer">
     © 2026 Investigating Keupstraße. Do No Harm License.
 </div>
-<div class="timeline-overlay" id="timelineOverlay" onclick="closeTimeline()"></div>
 
-<div class="timeline-container" id="timelineContainer">
-    <div >
 
-        <div class="timeline-close" onclick="closeTimeline()">×</div>
-    </div>
-
-    <div class="timeline-grid">
-
-        <div class="timeline-y-axis" id="timelineYAxis">
-        </div>
-        <div class="timeline-x-axis" id="timelineXAxis">
-        </div>
-        <div class="timeline-content" id="timelineContent">
-        </div>
-    </div>
-</div>
 </body>
 </html>

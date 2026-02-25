@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0e0f;
+      --surface: #1a1a1c;
+      --border: #2e2e32;
+      --text: #e8e6e1;
+      --muted: #6b6a68;
+      -
+      --node-r: 10;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: white;
+      color: var(--text);
+      font-family: "DM Mono", monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    #chart-wrap {
+      width: 100%;
+      height: 100%;
+      background: white;
+      padding: 32px 24px 24px;
+      overflow-x: auto;
+      position: relative;
+      padding-top: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg#timeline {
+      display: block;
+      overflow: visible;
+    }
+
+    /* Grid lines */
+    .grid-line {
+      stroke: black;
+      stroke-width: 1;
+      /*stroke-dasharray: 4 4;*/
+    }
+
+    /* Category labels */
+    .cat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      fill: black;
+      text-anchor: end;
+      dominant-baseline: middle;
+      letter-spacing: 0.05em;
+    }
+
+    /* Year labels */
+    .year-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      fill: black;
+      text-anchor: middle;
+      letter-spacing: 0.05em;
+    }
+
+    /* Nodes */
+    .node-circle {
+      cursor: pointer;
+      transition: r 0.15s ease, filter 0.15s ease;
+      filter: drop-shadow(0 0 4px transparent);
+    }
+    .node-circle:hover {
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    .node-pulse {
+      pointer-events: none;
+      opacity: 0;
+      animation: pulse 2s ease-out infinite;
+    }
+    @keyframes pulse {
+      0% { r: 10; opacity: 0.6; }
+      100% { r: 22; opacity: 0; }
+    }
+
+    /* Popup overlay */
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.2s ease;
+    }
+    #overlay.open { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    #popup {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 560px;
+      width: 90%;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      animation: slideUp 0.22s cubic-bezier(.22,.68,0,1.2);
+      position: relative;
+    }
+    @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    #popup-header {
+      padding: 6px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0e0e0f;
+      font-weight: 500;
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #0e0e0f;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    #close-btn:hover { opacity: 1; }
+
+    /* Table styles */
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .timeline-item-date {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--text);
+      padding: 16px 16px 8px;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    .timeline-item-text {
+      font-size: 0.875rem;
+      color: #b0aea9;
+      padding: 0 16px 16px;
+      line-height: 1.6;
+      vertical-align: top;
+    }
+
+    .media-cell {
+      padding: 16px 16px 16px 0;
+      vertical-align: top;
+      width: 160px;
+    }
+
+    .media-cell img {
+      width: 148px;
+      height: 148px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .source-cell {
+      padding: 10px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      word-break: break-all;
+    }
+
+    .source-cell a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .source-cell a:hover { text-decoration: underline; }
+
+    /* Add node button */
+    #add-btn {
+      margin-top: 28px;
+      background: none;
+      border: 1px solid  rgb(23, 61, 245);
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    #add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
+    table, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 15px;
+      color: black;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+
+    /* Add Node Modal */
+    #form-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(1px);
+      animation: fadeIn 0.2s ease;
+    }
+    #form-overlay.open { display: flex; }
+
+    #form-modal {
+      background: white;
+      width: 90%;
+      max-width: 480px;
+      overflow: hidden;
+      animation: slideUp 0.22s cubic-bezier(.22,.68,0,1.2);
+
+    }
+
+
+    #form-close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0.7;
+      margin-left: 5px;
+
+    }
+    #form-close-btn:hover { opacity: 1; }
+
+    #form-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: white;
+      border: none;
+      color: black;
+      font-family: 'DM Mono', monospace;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .f-te
+    .form-field select option { background: var(--surface); }
+
+
+    .btn-cancel {
+      background: none;
+      border: none;
+      font-family: 'DM Mono', monospace;
+      cursor: pointer;
+
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-cancel:hover { border-color: var(--muted); color: var(--text); }
+
+    .btn-send {
+      background: var(--accent);
+      border: none;
+      font-family: 'DM Mono', monospace;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-send:hover { border-color: var(--muted); color: var(--text); }
+
+
+
+  </style>
+</head>
+<body>
+
+
+<div id="chart-wrap">
+  <svg id="timeline"></svg>
+</div>
+
+<div class="legend" id="legend"></div>
+<button id="add-btn" onclick="openAddForm()">+ Add Event</button>
+
+<!-- Add Node Modal -->
+<div id="form-overlay">
+  <div id="form-modal">
+    <div id="form-body">
+      <table class="form-table">
+        <tr >
+          <td>
+            <button id="form-close-btn" onclick="closeAddForm()">✕</button>
+          </td>
+           <td colspan="2"> Submit Event Suggestion </td>
+        </tr>
+        <tr>
+          <td><label for="f-date">Date</label></td>
+          <td><label for="f-category">Category</label></td>
+          <td><label for="f-title">Title</label></td>
+        </tr>
+        <tr>
+          <td><input type="date" id="f-date" min="2004-01-01" max="2011-12-31" value="2005-01-01"></td>
+          <td>
+            <select id="f-category">
+              <option>NSU</option>
+              <option>Politics</option>
+              <option>Legal</option>
+              <option>Attack</option>
+              <option>Media</option>
+              <option>Other</option>
+            </select>
+          </td>
+          <td><input type="text" id="f-title" placeholder="Event title"></td>
+        </tr>
+
+        <tr>
+          <td><label for="f-text">Description</label></td>
+          <td colspan="3"><textarea id="f-text"  placeholder="Describe the event…"></textarea></td>
+        </tr>
+        <tr>
+          <td><label for="f-source">Source URL (you must provide some form of proof.)</label></td>
+          <td colspan="3"><input type="url" id="f-source" placeholder="https://…"></td>
+        </tr>
+        <tr>
+          <td><label for="f-image">Image URL (optional)</label></td>
+          <td colspan="3"><input type="url" id="f-image" placeholder="https://…" ></td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            <button class="btn-cancel" onclick="closeAddForm()">Cancel</button>
+          </td>
+          <td colspan="2">
+            <button class="btn-send" onclick="submitNodeByEmail()">Send Request</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Popup -->
+<div id="overlay">
+  <div id="popup">
+    <div id="popup-header"></div>
+    <button id="close-btn" onclick="closePopup()">✕</button>
+    <table class="timeline-table" id="popup-table"></table>
+  </div>
+</div>
+
+<script>
+  // ─── CONFIG ──────────────────────────────────────────────────────────────────
+  const MARGIN = { top: 30, right: 40, bottom: 50, left: 110 };
+  const ROW_H = 64;
+  const START_YEAR = 2004;
+  const END_YEAR = 2011;
+
+  const CAT_COLORS = {
+    "NSU":        "#c9a84c",
+    "Politics":   "#7c5cbf",
+    "Legal":      "#3a9e7e",
+    "Attack":     "#c9534c",
+    "Media":      "#4c7ec9",
+    "Other":      "#a0a0a0",
+    "default":    "#4c7ec9"
+
+  };
+
+  function categoryColor(cat) {
+    return "rgb(23, 61, 245)"; ;
+  }
+
+  // ─── SAMPLE DATA ─────────────────────────────────────────────────────────────
+  let nodes = [
+    {
+      date: "2004-06-09",
+      category: "NSU",
+      title: "Nail Bomb Attack",
+      content: {
+        text: "A nail bomb explodes in Keupstraße, injuring 22 people. The attack targets the Turkish and Kurdish community in Cologne.",
+        media: { type: "image", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s", alt: "Keupstraße after the attack" }
+      },
+      source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s"
+    },
+    {
+      date: "2004-06-09",
+      category: "Police",
+      title: "Nail Bomb Attack",
+      content: {
+        text: "A nail bomb explodes in Keupstraße, injuring 22 people. The attack targets the Turkish and Kurdish community in Cologne.",
+        media: { type: "image", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s", alt: "Keupstraße after the attack" }
+      },
+      source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s"
+    },
+    {
+      date: "2006-04-06",
+      category: "Attack",
+      title: "Dortmund Bombing",
+      content: {
+        text: "A nail bomb attack in Dortmund wounds 29 people. Police initially pursue wrong suspects, missing the true perpetrators.",
+        media: { type: "image", url: "https://via.placeholder.com/148x148/c9534c/ffffff?text=Dortmund", alt: "Dortmund bombing scene" }
+      },
+      source: "https://example.com/dortmund"
+    },
+    {
+      date: "2007-11-25",
+      category: "Legal",
+      title: "Failed Investigation",
+      content: {
+        text: "Internal memos reveal investigators dismissed evidence pointing to a far-right network, focusing instead on organised crime theories.",
+        media: null
+      },
+      source: "https://example.com/investigation"
+    },
+    {
+      date: "2009-03-10",
+      category: "Politics",
+      title: "Parliamentary Question",
+      content: {
+        text: "Opposition MPs raise questions in the Bundestag about the pattern of unsolved murders targeting ethnic minority business owners.",
+        media: null
+      },
+      source: "https://example.com/bundestag"
+    },
+    {
+      date: "2011-11-04",
+      category: "NSU",
+      title: "NSU Uncovered",
+      content: {
+        text: "Following a botched bank robbery and the suicide of Uwe Mundlos and Uwe Böhnhardt, Beate Zschäpe burns down the safehouse, exposing the NSU cell.",
+        media: { type: "image", url: "https://via.placeholder.com/148x148/c9a84c/000000?text=NSU+2011", alt: "NSU exposed" }
+      },
+      source: "https://example.com/nsu-exposed"
+    },
+    {
+      date: "2011-06-15",
+      category: "Media",
+      title: "Press Coverage Gap",
+      content: {
+        text: "Analysis shows major German newspapers gave minimal front-page coverage to the Doner murders despite nine victims over seven years.",
+        media: null
+      },
+      source: "https://example.com/media"
+    },
+  ];
+
+  // ─── RENDER ───────────────────────────────────────────────────────────────────
+  function getCategories() {
+    const set = new Set(nodes.map(n => n.category));
+    return [...set];
+  }
+
+  function dateToYear(dateStr) {
+    const d = new Date(dateStr);
+    return d.getFullYear() + (d.getMonth()) / 12 + d.getDate() / 365;
+  }
+
+  function render() {
+    const svg = document.getElementById('timeline');
+    const wrap = document.getElementById('chart-wrap');
+    const W = Math.max(wrap.clientWidth - 48, 600);
+    const categories = getCategories();
+    const H = MARGIN.top + categories.length * ROW_H + MARGIN.bottom;
+
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.innerHTML = '';
+
+    const innerW = W - MARGIN.left - MARGIN.right;
+    const innerH = H - MARGIN.top - MARGIN.bottom;
+
+    const g = svgEl('g', { transform: `translate(${MARGIN.left},${MARGIN.top})` });
+    svg.appendChild(g);
+
+    // X scale
+    const xRange = END_YEAR + 1 - START_YEAR;
+    const xScale = x => ((x - START_YEAR) / xRange) * innerW;
+
+    // Y scale
+    const yScale = cat => {
+      const i = categories.indexOf(cat);
+      return i * ROW_H + ROW_H / 2;
+    };
+
+    // Grid + category labels
+    categories.forEach((cat, i) => {
+      const y = yScale(cat);
+      // horizontal grid line
+      g.appendChild(svgEl('line', { x1: 0, y1: y, x2: innerW, y2: y, class: 'grid-line' }));
+      // label
+      const txt = svgEl('text', { x: -12, y: y, class: 'cat-label' });
+      txt.textContent = cat;
+      g.appendChild(txt);
+
+    });
+
+    // Year ticks + vertical grid
+    for (let yr = START_YEAR; yr <= END_YEAR + 1; yr++) {
+      const x = xScale(yr);
+      g.appendChild(svgEl('line', { x1: x, y1: 0, x2: x, y2: innerH, class: 'grid-line', opacity: 0.5 }));
+      const txt = svgEl('text', { x: x, y: innerH + 22, class: 'year-label' });
+      txt.textContent = yr;
+      g.appendChild(txt);
+    }
+
+    // X axis line
+    g.appendChild(svgEl('line', { x1: 0, y1: innerH, x2: innerW, y2: innerH, stroke: '#3e3e44', 'stroke-width': 1 }));
+
+    // Nodes
+    nodes.forEach((node, idx) => {
+      const x = xScale(dateToYear(node.date));
+      const y = yScale(node.category);
+      const color = categoryColor(node.category);
+
+      const ng = svgEl('g', { class: 'node-group', 'data-idx': idx });
+
+      // pulse ring
+      const pulse = svgEl('circle', { cx: x, cy: y, r: 20, fill: 'none', stroke: color, 'stroke-width': 2, class: 'node-pulse' });
+      ng.appendChild(pulse);
+
+      // main circle
+      const circle = svgEl('circle', {
+        cx: x, cy: y, r: 20,
+        fill: color,
+        class: 'node-circle',
+
+      });
+      circle.style.color = color;
+      circle.addEventListener('click', () => openPopup(idx, color));
+      ng.appendChild(circle);
+
+
+      g.appendChild(ng);
+    });
+
+
+
+  }
+
+  // ─── POPUP ───────────────────────────────────────────────────────────────────
+  function renderMedia(media) {
+    if (!media) return '';
+    if (media.type === 'image') {
+      return `<img src="${media.url}" alt="${media.alt || ''}" onerror="this.style.display='none'">`;
+    }
+    return '';
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function openPopup(idx, color) {
+    const item = nodes[idx];
+    const displayDate = formatDate(item.date);
+    const header = document.getElementById('popup-header');
+    header.style.background = color;
+    header.textContent = item.category;
+
+    const mediaHTML = renderMedia(item.content.media);
+    const hasMedia = !!item.content.media;
+
+    const table = document.getElementById('popup-table');
+    table.innerHTML = `
+    <tr>
+      <td class="timeline-item-date">${item.title}<br><span style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);font-weight:300">${displayDate} · ${item.category}</span></td>
+      ${hasMedia ? `<td class="media-cell" rowspan="2">${mediaHTML}</td>` : ''}
+    </tr>
+    <tr>
+      <td class="timeline-item-text">${item.content.text}</td>
+    </tr>
+    <tr>
+      <td class="source-cell" colspan="${hasMedia ? 2 : 1}">
+        Source: <a href="${item.source}" target="_blank" rel="noopener">${item.source}</a>
+      </td>
+    </tr>
+  `;
+
+    document.getElementById('overlay').classList.add('open');
+  }
+
+  function closePopup() {
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  document.getElementById('overlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  // ─── ADD NODE FORM ────────────────────────────────────────────────────────────
+  function openAddForm() {
+    // Reset form
+    document.getElementById('f-date').value = '2005-01-01';
+    document.getElementById('f-category').value = 'NSU';
+    document.getElementById('f-title').value = '';
+    document.getElementById('f-text').value = '';
+    document.getElementById('f-source').value = '';
+    document.getElementById('f-image').value = '';
+    document.getElementById('form-overlay').classList.add('open');
+  }
+
+  function closeAddForm() {
+    document.getElementById('form-overlay').classList.remove('open');
+  }
+
+  function submitNodeByEmail() {
+    const date     = document.getElementById('f-date').value;
+    const category = document.getElementById('f-category').value;
+    const title    = document.getElementById('f-title').value.trim();
+    const text     = document.getElementById('f-text').value.trim();
+    const source   = document.getElementById('f-source').value.trim();
+    const image    = document.getElementById('f-image').value.trim();
+
+    if (!date || !title) {
+      alert('Please fill in at least the Date and Title.');
+      return;
+    }
+
+    const subject = encodeURIComponent(`[Timeline Node] ${title} (${date})`);
+    const body = encodeURIComponent(
+            `New timeline node submission:
+
+Title:    ${title}
+Date:     ${date}
+Category: ${category}
+Text:     ${text || '(none)'}
+Source:   ${source || '(none)'}
+Image:    ${image || '(none)'}
+
+---
+Submitted via the Timeline tool.`
+    );
+
+    window.location.href = `mailto:emmareeb@gmail.com?subject=${subject}&body=${body}`;
+    closeAddForm();
+  }
+
+  // Close form modal on backdrop click
+  document.getElementById('form-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAddForm();
+  });
+
+  // ─── SVG HELPER ──────────────────────────────────────────────────────────────
+  function svgEl(tag, attrs = {}) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    return el;
+  }
+
+  // ─── INIT ─────────────────────────────────────────────────────────────────────
+  render();
+  window.addEventListener('resize', render);
+</script>
+</body>
+</html>
