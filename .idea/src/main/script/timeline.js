@@ -46,6 +46,7 @@ let nodes = [
         dateRange: "2005–2008",
         category: "Police",
         title: "Surveilance of the Hasan Yildirim",
+        docMinute: "51:00",
         content: {
             text: "Hasan Yildirim (the brother of the hair salon owner) moves to a hairdresser on Venloer Straße, and the police see this as a reason to create a movement profile and have him followed.",
             media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
@@ -58,14 +59,16 @@ let nodes = [
         date: "2004-06-09",
         category: "Police",
         title: "Police interrogation the evening of the attack",
+        docMinute: "23:00",
         content: {
-            text: "The first ‘interrogations’ took place on the same day as the attack. Ultimately, the victims were " +
-                "investigated as perpetrators for seven years until the NSU revealed itself in 2011." +
-                "",
-            media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
+            text: "The first interrogations took place on the same day as the attack. Abdullah Ö. and Atila Ö. were questioned by the police but they were not treated as victims. ‘I had to strip down to my underwear " +
+                "and give a saliva sample,’ says Abdullah Ö. ‘I'm not doing that, I'm a victim,’ he said at the time. He is asked to have all his clothes checked for " +
+                "traces of explosives. Relatives bring him new clothes to the police headquarters and pick him up.",
+            media: { type: "image", url: "https://kommunales-kino-pforzheim.de/wp-content/uploads/2017/01/der_kuafoer-_aus_der_kneupstr-1-e1484305459885.jpg", alt: "Abdullah Ö. and Atila Ö." }
         },
-        source: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462",
+        source: "https://kommunales-kino-pforzheim.de/wp-content/uploads/2017/01/der_kuafoer-_aus_der_kneupstr-1-e1484305459885.jpg",
         factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
 
     },
 
@@ -300,6 +303,9 @@ function formatDate(dateStr) {
 }
 
 function openPopup(idx, color) {
+
+
+
     const item = nodes[idx];
     const displayDate = item.dateRange ? item.dateRange : formatDate(item.date);
     const header = document.getElementById('popup-header');
@@ -328,11 +334,17 @@ function openPopup(idx, color) {
       Image source: <a href="${item.source}">${item.source}</a>
     </td>
   </tr>
-  <tr>
+    <tr>
     <td class="source-cell" colspan="4">
       Fact source: <a href="${item.factSource}">${item.factSource}</a>
     </td>
   </tr>
+  ${item.docMinute ? `
+  <tr>
+    <td class="source-cell" colspan="4">
+      Documentary timestamp: ${item.docMinute}
+    </td>
+  </tr>` : ''}
   `;
 
     document.getElementById('overlay').classList.add('open');
