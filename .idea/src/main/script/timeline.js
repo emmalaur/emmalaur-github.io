@@ -1,5 +1,5 @@
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
-const MARGIN = { top: 30, right: 40, bottom: 50, left: 110 };
+const MARGIN = { top: 30, right: 40, bottom: 50, left: 160 };
 const ROW_H = 64;
 const START_YEAR = 2004;
 const END_YEAR = 2011;
@@ -25,6 +25,51 @@ function categoryColor(cat) {
 let nodes = [
 
     {
+        date: "2011-11-01",
+        category: "Federal Office",
+        title: "File Destruction",
+        content: {
+            text: "An employee of the Office for the Protection of the Constitution illegally destroyed the files relating to the investigation of the nail bomb attack in Keupstraße and general files on the NSU." +
+                " In consideration of the fatal investigation procedure, one can only assume that the destruction served to cover up his own mistakes.",
+            media: { type: "image", url: "https://img.zeit.de/2019/33/datenvernichtung-akten-schreddern/wide__1280x720", alt: "Destroyed Files" }
+        },
+        source: "https://img.zeit.de/2019/33/datenvernichtung-akten-schreddern/wide__1280x720",
+        factSource: "https://www.vg-koeln.nrw.de/behoerde/presse/Pressemitteilungen/Archiv/2015/50_151112/index.php",
+        connections: [
+            { to: "NSU Uncovered", style: "solid" },
+            { to: "Dortmund Bombing", style: "dotted" }
+        ]
+    },
+
+    {
+        date: "2004-09-01",
+        dateRange: "2005–2008",
+        category: "Police",
+        title: "Surveilance of the Hasan Yildirim",
+        content: {
+            text: "Hasan Yildirim (the brother of the hair salon owner) moves to a hairdresser on Venloer Straße, and the police see this as a reason to create a movement profile and have him followed.",
+            media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
+        },
+        source: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+    },
+    {
+        date: "2004-06-09",
+        category: "Police",
+        title: "Police interrogation the evening of the attack",
+        content: {
+            text: "The first ‘interrogations’ took place on the same day as the attack. Ultimately, the victims were " +
+                "investigated as perpetrators for seven years until the NSU revealed itself in 2011." +
+                "",
+            media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
+        },
+        source: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+    },
+
+    {
         date: "2004-06-09",
         category: "NSU",
         title: "Nail Bomb Attack",
@@ -39,69 +84,10 @@ let nodes = [
             { to: "Dortmund Bombing", style: "dotted" }
         ]
     },
-    {
-        date: "2004-09-01",
-        dateRange: "2004–2011",
-        category: "Police",
-        title: "Surveilance of the victims",
-        content: {
-            text: "Hasan Yildirim (the brother of the hair salon owner) moves to a hairdresser on Venloer Straße, and the police see this as a reason to create a movement profile and have him followed.",
-            media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
-        },
-        source: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462",
-        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
 
-    },
-    {
-        date: "2006-04-06",
-        category: "Attack",
-        title: "Dortmund Bombing",
-        content: {
-            text: "A nail bomb attack in Dortmund wounds 29 people. Police initially pursue wrong suspects, missing the true perpetrators.",
-            media: { type: "image", url: "https://via.placeholder.com/148x148/c9534c/ffffff?text=Dortmund", alt: "Dortmund bombing scene" }
-        },
-        source: "https://example.com/dortmund"
-    },
-    {
-        date: "2007-11-25",
-        category: "Legal",
-        title: "Failed Investigation",
-        content: {
-            text: "Internal memos reveal investigators dismissed evidence pointing to a far-right network, focusing instead on organised crime theories.",
-            media: null
-        },
-        source: "https://example.com/investigation"
-    },
-    {
-        date: "2009-03-10",
-        category: "Politics",
-        title: "Parliamentary Question",
-        content: {
-            text: "Opposition MPs raise questions in the Bundestag about the pattern of unsolved murders targeting ethnic minority business owners.",
-            media: null
-        },
-        source: "https://example.com/bundestag"
-    },
-    {
-        date: "2011-11-04",
-        category: "NSU",
-        title: "NSU Uncovered",
-        content: {
-            text: "Following a botched bank robbery and the suicide of Uwe Mundlos and Uwe Böhnhardt, Beate Zschäpe burns down the safehouse, exposing the NSU cell.",
-            media: { type: "image", url: "https://via.placeholder.com/148x148/c9a84c/000000?text=NSU+2011", alt: "NSU exposed" }
-        },
-        source: "https://example.com/nsu-exposed"
-    },
-    {
-        date: "2011-06-15",
-        category: "Media",
-        title: "Press Coverage Gap",
-        content: {
-            text: "Analysis shows major German newspapers gave minimal front-page coverage to the Doner murders despite nine victims over seven years.",
-            media: null
-        },
-        source: "https://example.com/media"
-    },
+
+
+
 ];
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
@@ -148,9 +134,24 @@ function render() {
         // horizontal grid line
         g.appendChild(svgEl('line', { x1: 0, y1: y, x2: innerW, y2: y, class: 'grid-line' }));
         // label
-        const txt = svgEl('text', { x: -12, y: y, class: 'cat-label' });
-        txt.textContent = cat;
-        g.appendChild(txt);
+        const words = cat.split(' ');
+        if (words.length === 1) {
+            const txt = svgEl('text', { x: -12, y: y, class: 'cat-label' });
+            txt.textContent = cat;
+            g.appendChild(txt);
+        } else {
+            const mid = Math.ceil(words.length / 2);
+            const line1 = words.slice(0, mid).join(' ');
+            const line2 = words.slice(mid).join(' ');
+            const txt = svgEl('text', { x: -12, y: y - 8, class: 'cat-label' });
+            const t1 = svgEl('tspan', { x: -12, dy: '0' });
+            t1.textContent = line1;
+            const t2 = svgEl('tspan', { x: -12, dy: '1.2em' });
+            t2.textContent = line2;
+            txt.appendChild(t1);
+            txt.appendChild(t2);
+            g.appendChild(txt);
+        }
 
     });
 
