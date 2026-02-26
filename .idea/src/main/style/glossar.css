@@ -23,6 +23,10 @@ table, td {
 .main-glossar-table a:visited {
     color: white;
 }
+.main-glossar-table a:hover:visited {
+    background: white;
+    color: rgb(23, 61, 245);
+}
 .main-glossar-table {
     font-family: "DM Mono", monospace;
     color: white;

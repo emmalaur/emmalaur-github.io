@@ -18,7 +18,6 @@ let images = [
 
 let currentLbIdx = 0;
 
-// ── RENDER TABLE ──────────────────────────────────────────────────────────────
 function renderGallery() {
     const tbody = document.getElementById('gallery-tbody');
     tbody.innerHTML = '';
@@ -51,12 +50,10 @@ function renderGallery() {
         tbody.appendChild(tr);
     }
 
-    // update count
     document.getElementById('gallery-count').textContent =
         `${images.length} image${images.length !== 1 ? 's' : ''}`;
 }
 
-// ── LIGHTBOX ──────────────────────────────────────────────────────────────────
 function openLightbox(idx) {
     currentLbIdx = idx;
     updateLightbox();
@@ -88,20 +85,17 @@ function lbNav(dir) {
     updateLightbox();
 }
 
-// close on backdrop click
-document.getElementById('gallery-lightbox').addEventListener('click', function(e) {
+document.getElementById('gallery-lightbox').addEventListener('click', function (e) {
     if (e.target === this) closeLightbox();
 });
 
-// keyboard nav
+
 document.addEventListener('keydown', e => {
     if (!document.getElementById('gallery-lightbox').classList.contains('open')) return;
     if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'ArrowLeft')  lbNav(-1);
-    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'Escape') closeLightbox();
 });
 
 
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
 renderGallery();

@@ -159,9 +159,41 @@ td a:hover {
     padding-left: 10px;
     padding: 10px;
     border: 1px solid rgb(23, 61, 245);
-    font-weight: lighter;
+    font-weight: normal;
     font-size: 17px;
 
+}
+.written-content-image-wrap {
+    position: relative;
+    width: 100%;
+    margin: 20px auto 40px auto;
+}
+
+.written-content-image-wrap img {
+    width: 100%;
+    display: block;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    font-family: 'Vend Sans', sans-serif;
+    font-size: 12px;
+    padding: 6px 10px;
+    margin: 0;
+}
+
+.written-content a {
+    color: rgb(23, 61, 245);
+    font-style: italic;
+}
+.written-content a:hover {
+    color: white;
+    background-color: rgb(23, 61, 245);
 }
 
 .written-content .body-text{
@@ -238,4 +270,6 @@ td a:hover {
     inset: 0;
     cursor: pointer;
 }
+
+
 

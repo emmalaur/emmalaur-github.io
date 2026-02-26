@@ -262,7 +262,10 @@ svg#timeline {
 }
 
 
-.source-cell a:hover { text-decoration: underline; }
+.source-cell a:hover {
+    background: rgb(23, 61, 245);
+    color: white;
+}
 
 
 
@@ -357,7 +360,7 @@ svg#timeline {
     border-collapse: collapse;
     font-family: 'DM Mono', monospace;
     font-size: 14px;
-    padding:10px;
+    padding:5px;
     margin-top: 40px;
-    max-width: 400px ;
+    max-width: 650px ;
 }

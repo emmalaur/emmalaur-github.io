@@ -10,6 +10,7 @@ function closeNavbarOnClickOutside(event) {
         navbar.classList.remove('open');
     }
 }
+
 document.addEventListener('click', closeNavbarOnClickOutside);
 
 
@@ -37,4 +38,8 @@ function closeImageOverlay() {
     overlay.classList.remove('active');
 }
 
-document.addEventListener('DOMContentLoaded', loadMarkdown);
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('licenseContent')) {
+        loadMarkdown();
+    }
+});
