@@ -1,8 +1,8 @@
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const MARGIN = { top: 30, right: 40, bottom: 50, left: 160 };
 const ROW_H = 64;
-const START_YEAR = 2004;
-const END_YEAR = 2011;
+const START_YEAR = 1997;
+const END_YEAR = 2015;
 
 const CAT_COLORS = {
     "Government":        "#c9a84c",
@@ -25,7 +25,7 @@ function categoryColor(cat) {
 let nodes = [
 
     {
-        date: "2011-11-01",
+        date: "2011-11-11",
         category: "Federal Office",
         title: "File Destruction",
         content: {
@@ -35,14 +35,41 @@ let nodes = [
         },
         source: "https://img.zeit.de/2019/33/datenvernichtung-akten-schreddern/wide__1280x720",
         factSource: "https://www.vg-koeln.nrw.de/behoerde/presse/Pressemitteilungen/Archiv/2015/50_151112/index.php",
-        connections: [
-            { to: "NSU Uncovered", style: "solid" },
-            { to: "Dortmund Bombing", style: "dotted" }
-        ]
+
     },
 
     {
-        date: "2004-09-01",
+        date: "2004-09-06",
+        dateRange: "2004–2011",
+        category: "Tax Office",
+        title: "Control by the Tax and Finance Office",
+        content: {
+            text: "According to Meral Sahin, the Speaker of IG Keupstraße, it's not just the police that turns the victims into culprits. The State also put pressure on the people living and working in Keupstraße. The Finance & Tax Office would write out unporportional high fines to shop owners. The Customs Office was there every month.",
+            media: { type: "image", url: "https://taz.de/picture/1370991/1200/290716Keupstrasse.jpeg", alt: "Keupstraße" }
+        },
+        source: "https://taz.de/picture/1370991/1200/290716Keupstrasse.jpeg",
+        factSource: "https://podcasts.apple.com/de/podcast/true-crime-k%C3%B6ln/id1649776242?l=en-GB&i=1000658236604",
+
+    },
+
+    {
+        date: "2004-06-10",
+        dateRange: "The time after the attack and media uproar.",
+        category: "Media",
+        docMinute: "30:00",
+        title: "Biased media reporting",
+        content: {
+            text: "The 10 year old daughter of Abdullah Ö. reports being bullied at school after media headlines detail the attack as gang crime.",
+            media: { type: "image", url: "https://www.historische-magazine.de/wp-content/uploads/2018/05/Bild_Logo-1024x828.jpg", alt: "News Article" }
+        },
+        source: "https://www.historische-magazine.de/wp-content/uploads/2018/05/Bild_Logo-1024x828.jpg",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+
+    },
+
+    {
+        date: "2005-01-01",
         dateRange: "2005–2008",
         category: "Police",
         title: "Surveilance of the Hasan Yildirim",
@@ -57,6 +84,7 @@ let nodes = [
     },
     {
         date: "2004-06-09",
+        dateRange: "09 June 2004",
         category: "Police",
         title: "Police interrogation the evening of the attack",
         docMinute: "23:00",
@@ -69,7 +97,69 @@ let nodes = [
         source: "https://kommunales-kino-pforzheim.de/wp-content/uploads/2017/01/der_kuafoer-_aus_der_kneupstr-1-e1484305459885.jpg",
         factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
 
+    },
+    {
+        date: "2006-04-05",
+        category: "Police",
+        title: "Police interrigate victims again",
+        docMinute: "52:00",
+        content: {
+            text: "Both Yildirim Brothers and their wives are ivited to the police station under false pretences to then be interrogated for seven hours in separate rooms. " +
+                "Sometimes with three or four police officers accusing them simultaneously while trying to play them against each other" ,
+            media: { type: "image", url: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Polizei-kalk.jpg", alt: "Police station Kalk, Cologne" }
+        },
+        source: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Polizei-kalk.jpg",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
 
+    },
+    {
+        date: "2004-08-01",
+        category: "Police",
+        dateRange: "Sometime after the attack within the first year",
+        title: "Police introduce undercover agents to Keupstraße",
+        docMinute: "52:00",
+        content: {
+            text: "Undercover operative VE-1 was deployed in Keupstraße in a commercial capacity, with the objective of establishing contact with local " +
+                "business owners. As cultivating the necessary trust proved difficult, a second undercover operative of Turkish descent, VE-2, was introduced" +
+                " in September to assist in this endeavour. Both operatives developed close contact with the local business community, with particular focus " +
+                "placed on establishing a relationship with Özan. VE-1 feigned interest in acquiring the business and entered into sale negotiations under this" +
+                " pretence." ,
+            media: { type: "image", url: "https://assets.deutschlandfunk.de/FILE_789d17e4de94c8589bb31995de3f99ec/original.jpg?t=1597563860209", alt: "The hair salon" }
+        },
+        source: "https://assets.deutschlandfunk.de/FILE_789d17e4de94c8589bb31995de3f99ec/original.jpg?t=1597563860209",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+    },
+    {
+        date: "2015-01-01",
+        dateRange: "sometime between 2014–2015",
+        category: "Police",
+        title: "Former Head of Police denies knowing of any mistakes during the investigation",
+        docMinute: "37:00",
+        content: {
+            text: "Klaus Steffen, Chief of Police in Cologne from 1999 to 2011, stated that even as late as 2015 he was unable to assess whether procedural" +
+                " errors had occurred during the investigation. He deflected all responsibility, asserting that he had no direct oversight of the seven-year-long investigative proceedings.r" ,
+            media: { type: "image", url: "https://www.ruhrnachrichten.de/wp-content/uploads/2024/11/22/20/630_0900_4273851_6433189.jpg", alt: "Klaus Steffen" }
+        },
+        source: "https://www.ruhrnachrichten.de/wp-content/uploads/2024/11/22/20/630_0900_4273851_6433189.jpg",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+    },
+
+    {
+        date: "1998-01-01",
+        category: "NSU",
+        title: "NSU Group forms",
+        content: {
+            text: "The right-wing extremist group 'NSU' (National Socialist Underground) is formed by Uwe Mundlos, Uwe Böhnhardt and Beate Zschäpe. The group is responsible for a series of murders, bombings, and robberies in Germany between 2000 and 2011.",
+            media: { type: "image", url: "https://media.news.de/images/856435285/images/94/1c/7ca4fc13bb277f0969f6b3052926/nopic/no_pic/1200/675/1/1/38/-/823/463/-/-/fahndungsbilder-beate-zschaepe-uwe-boehnhardt-uwe-mundlos_856435285_1200x675_6bbed198e9ce2258f7a14cef421b0d27.jpg", alt: "NSU members" }
+        },
+        source: "https://media.news.de/images/856435285/images/94/1c/7ca4fc13bb277f0969f6b3052926/nopic/no_pic/1200/675/1/1/38/-/823/463/-/-/fahndungsbilder-beate-zschaepe-uwe-boehnhardt-uwe-mundlos_856435285_1200x675_6bbed198e9ce2258f7a14cef421b0d27.jpg",
+        factSource: "https://www.bpb.de/themen/rechtsextremismus/dossier-rechtsextremismus/500799/nationalsozialistischer-untergrund-nsu/",
+        connections: [
+            { to: "Nail Bomb Attack", style: "solid" }
+
+        ]
     },
 
     {
@@ -84,9 +174,28 @@ let nodes = [
         factSource: "https://www.deutschlandfunk.de/09-06-2004-nagelbombenanschlag-des-nsu-in-der-koelner-keupstrasse-dlf-8f2fe448-100.html",
         connections: [
             { to: "NSU Uncovered", style: "solid" },
-            { to: "Dortmund Bombing", style: "dotted" }
+            { to: "Nail Bomb Attack", style: "dotted" }
+
         ]
     },
+    {
+        date: "2011-11-04",
+        category: "NSU",
+        title: "NSU self-exposure",
+        content: {
+            text: "When police approached a motorhome in Eisenach on 4 November 2011, two shots were fired inside the vehicle before it caught fire. Police found the bodies of Uwe Mundlos and Uwe Böhnhardt inside. That same day in Zwickau, Beate Zschäpe set fire to the apartment the three had secretly shared, presumably to destroy evidence, and police began searching for her.",
+            media: { type: "image", url: "https://cdn.prod.www.spiegel.de/images/b433dcbd-0001-0004-0000-000000757436_w640_r1.5399422521655437_fpx32.44_fpy49.96.jpg", alt: "Burning vehicle" }
+        },
+        source: "https://cdn.prod.www.spiegel.de/images/b433dcbd-0001-0004-0000-000000757436_w640_r1.5399422521655437_fpx32.44_fpy49.96.jpg",
+        factSource: "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/343019/4-november-2011-aufdeckung-des-nsu/",
+        connections: [
+            { to: "File Destruction", style: "solid" },
+            { to: "Nail Bomb Attack", style: "dotted" }
+        ]
+    },
+
+
+
 
 
 
@@ -216,8 +325,10 @@ function render() {
 
         // main circle
         const circle = svgEl('circle', {
-            cx: x, cy: y, r: 20,
+            cx: x, cy: y, r: 15,
             fill: color,
+            stroke: 'white',
+            'stroke-width': 1,
             class: 'node-circle',
         });
         circle.style.color = color;

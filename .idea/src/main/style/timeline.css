@@ -140,6 +140,7 @@ svg#timeline {
 .node-circle {
     cursor: pointer;
     transition: r 0.15s ease, filter 0.15s ease;
+
 }
 .node-circle:hover {
     filter: drop-shadow(0 0 8px currentColor);
@@ -351,7 +352,7 @@ svg#timeline {
 }
 
 .line-example-table, .line-example-table td {
-    border: 1px solid black;
+    border: 1px solid rgb(23, 61, 245);
     color: black;
     border-collapse: collapse;
     font-family: 'DM Mono', monospace;
