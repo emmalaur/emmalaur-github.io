@@ -5,13 +5,15 @@ const START_YEAR = 2004;
 const END_YEAR = 2011;
 
 const CAT_COLORS = {
-    "NSU":        "#c9a84c",
-    "Politics":   "#7c5cbf",
-    "Legal":      "#3a9e7e",
-    "Attack":     "#c9534c",
-    "Media":      "#4c7ec9",
-    "Other":      "#a0a0a0",
-    "default":    "#4c7ec9"
+    "Government":        "#c9a84c",
+    "Federal Office":   "#7c5cbf",
+    "The City of Cologne":      "#3a9e7e",
+    "Tax Office":     "#c9534c",
+    "Public Respone":      "#4c7ec9",
+    "Media":      "#a0a0a0",
+    "Police":    "#4c7ec9",
+    "Community":    "#4c7ec9",
+    "NSU":    "#173df5",
 
 };
 
@@ -27,24 +29,28 @@ let nodes = [
         category: "NSU",
         title: "Nail Bomb Attack",
         content: {
-            text: "A nail bomb explodes in Keupstraße, injuring 22 people. The attack targets the Turkish and Kurdish community in Cologne.",
+            text: "The NSU nail bomb attack in Keupstraße injured 22 people, four of them seriously. The bomb, hidden in a suitcase on the luggage rack of a parked bicycle, contained around 700–800 10 cm long carpenter's nails. ",
             media: { type: "image", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s", alt: "Keupstraße after the attack" }
         },
         source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s",
+        factSource: "https://www.deutschlandfunk.de/09-06-2004-nagelbombenanschlag-des-nsu-in-der-koelner-keupstrasse-dlf-8f2fe448-100.html",
         connections: [
             { to: "NSU Uncovered", style: "solid" },
             { to: "Dortmund Bombing", style: "dotted" }
         ]
     },
     {
-        date: "2004-06-09",
+        date: "2004-09-01",
+        dateRange: "2004–2011",
         category: "Police",
-        title: "Nail Bomb Attack",
+        title: "Surveilance of the victims",
         content: {
-            text: "A nail bomb explodes in Keupstraße, injuring 22 people. The attack targets the Turkish and Kurdish community in Cologne.",
-            media: { type: "image", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s", alt: "Keupstraße after the attack" }
+            text: "Hasan Yildirim (the brother of the hair salon owner) moves to a hairdresser on Venloer Straße, and the police see this as a reason to create a movement profile and have him followed.",
+            media: { type: "image", url: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462", alt: "Hasan Yildirim" }
         },
-        source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s"
+        source: "https://img.zeit.de/gesellschaft/zeitgeschehen/2014-06/hasan-yildirim/hasan-yildirim-540x304.jpg/imagegroup/wide__822x462",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
     },
     {
         date: "2006-04-06",
@@ -294,7 +300,7 @@ function formatDate(dateStr) {
 
 function openPopup(idx, color) {
     const item = nodes[idx];
-    const displayDate = formatDate(item.date);
+    const displayDate = item.dateRange ? item.dateRange : formatDate(item.date);
     const header = document.getElementById('popup-header');
     header.textContent = item.category;
 
@@ -318,7 +324,12 @@ function openPopup(idx, color) {
   <tr></tr>
   <tr>
     <td class="source-cell" colspan="4">
-      Source: <a href="${item.source}">${item.source}</a>
+      Image source: <a href="${item.source}">${item.source}</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="source-cell" colspan="4">
+      Fact source: <a href="${item.factSource}">${item.factSource}</a>
     </td>
   </tr>
   `;
