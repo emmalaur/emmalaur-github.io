@@ -10,21 +10,24 @@ table, td {
     border: 1px solid white;
     border-collapse: collapse;
     padding: 10px;
+
 }
-a {
+.main-glossar-table a {
     text-decoration: none;
     color: white;
 }
-a:hover {
+.main-glossar-table a:hover {
     background: white;
     color: rgb(23, 61, 245);
 }
-
+.main-glossar-table a:visited {
+    color: white;
+}
 .main-glossar-table {
     font-family: "DM Mono", monospace;
     color: white;
     border: 1px solid white;
     border-collapse: collapse;
     width: 80%;
-    margin: 40px auto;
+    margin: 200px auto;
 }

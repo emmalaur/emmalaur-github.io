@@ -1,0 +1,360 @@
+:root {
+    --bg: #0e0e0f;
+    --surface: #1a1a1c;
+    --border: #2e2e32;
+    --text: #e8e6e1;
+    --muted: #6b6a68;
+    -
+    --node-r: 10;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.body-timeline {
+    background: white;
+    color: var(--text);
+    font-family: "DM Mono", monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px 80px;
+}
+
+.form-table, .form-table td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    color: black;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+}
+
+.timeline-table, .timeline-table td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding:10px;
+}
+
+#chart-wrap {
+    width: 100%;
+    height: 100%;
+    background: white;
+    margin-top: 100px;
+    padding: 32px 24px 24px;
+    overflow-x: auto;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg#timeline {
+    display: block;
+    overflow: visible;
+}
+
+/* Grid lines */
+.grid-line {
+    stroke: black;
+    stroke-width: 1;
+
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+#grid-toggle-btn {
+    margin-top: 28px;
+    background: none;
+    border: 1px solid rgb(23, 61, 245);
+    color: black;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    margin-left: 10px;
+    transition: border-color 0.2s, color 0.2s;
+}
+#grid-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+#line-toggle-btn {
+    margin-top: 28px;
+    background: none;
+    border: 1px solid rgb(23, 61, 245);
+    color: black;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    margin-left: 10px;
+    transition: border-color 0.2s, color 0.2s;
+}
+#line-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Add node button */
+#add-btn {
+    margin-top: 28px;
+    background: none;
+    border: 1px solid  rgb(23, 61, 245);
+    color: black;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    transition: border-color 0.2s, color 0.2s;
+}
+#add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
+/* Category labels */
+.cat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    fill: black;
+    text-anchor: end;
+    dominant-baseline: middle;
+    letter-spacing: 0.05em;
+}
+
+/* Year labels */
+.year-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    fill: black;
+    text-anchor: middle;
+    letter-spacing: 0.05em;
+}
+
+/* Nodes */
+.node-circle {
+    cursor: pointer;
+    transition: r 0.15s ease, filter 0.15s ease;
+}
+.node-circle:hover {
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.node-pulse {
+    pointer-events: none;
+    opacity: 0;
+}
+.node-pulse.pulsing {
+    animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+    0% { r: 20; opacity: 0.6; }
+    100% { r: 36; opacity: 0; }
+}
+
+/* Popup overlay */
+#overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+#overlay.open { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+#popup {
+    background: white;
+    max-width: 560px;
+    width: 90%;
+    overflow: hidden;
+    animation: slideUp 0.22s cubic-bezier(.22,.68,0,1.2);
+    position: relative;
+}
+@keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+#popup-header {
+    background: rgb(23, 61, 245);;
+    font: white;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+}
+
+#close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #0e0e0f;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+}
+#close-btn:hover { opacity: 1; }
+
+.timeline-popup-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: black;
+    padding: 8px 16px;
+    border-bottom: 1px solid black;
+}
+
+.timeline-item-date {
+    font-family: 'DM Mono', monospace;
+    color: black;
+    padding: 16px 16px 8px;
+    vertical-align: top;
+    line-height: 1.4;
+    border-bottom: 1px solid black;  /* ← added */
+}
+
+.timeline-item-date-sub {
+    font-size: 0.75rem;
+    color: #6b6a68;
+    font-weight: 300;
+}
+
+
+
+.timeline-item-text {
+    font-size: 0.875rem;
+    color: black;
+
+}
+
+.media-cell {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.media-cell img {
+    justify-content: center;
+    border: none;
+
+}
+.source-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: black;
+    word-break: break-all;
+}
+
+
+.source-cell a:hover { text-decoration: underline; }
+
+
+
+/* Add Node Modal */
+#form-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+    animation: fadeIn 0.2s ease;
+}
+#form-overlay.open { display: flex; }
+
+#form-modal {
+    background: white;
+    width: 90%;
+    max-width: 480px;
+    overflow: hidden;
+    animation: slideUp 0.22s cubic-bezier(.22,.68,0,1.2);
+
+}
+
+#form-close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+    margin-left: 5px;
+
+}
+#form-close-btn:hover { opacity: 1; }
+
+#form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    background: white;
+    border: none;
+    color: black;
+    font-family: 'DM Mono', monospace;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+}
+.f-te
+.form-field select option { background: var(--surface); }
+
+
+.btn-cancel {
+    background: none;
+    border: none;
+    font-family: 'DM Mono', monospace;
+    cursor: pointer;
+
+    transition: border-color 0.2s, color 0.2s;
+}
+.btn-cancel:hover { border-color: var(--muted); color: var(--text); }
+
+.btn-send {
+    background: var(--accent);
+    border: none;
+    font-family: 'DM Mono', monospace;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-send:hover { border-color: var(--muted); color: var(--text); }
+
+#line-example {
+    align-self: flex-start;
+    margin-left: 24px;
+}
+
+.line-example-table, .line-example-table td {
+    border: 1px solid black;
+    color: black;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding:10px;
+    margin-top: 40px;
+    max-width: 400px ;
+}

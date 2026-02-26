@@ -85,6 +85,8 @@ td a:hover {
     left: 0;
     width: 100%;
     background-color: white;
+    z-index: 1500;
+    border-bottom: 1px solid rgb(23, 61, 245);
 }
 
 .header-link {
@@ -101,9 +103,8 @@ td a:hover {
 
 .icon {
     color: black;
-    position: fixed;
+    position: absolute;
     left: 10px;
-    top: 10px;
     font-size: 24px;
     cursor: pointer;
     z-index: 2001;
@@ -119,7 +120,7 @@ td a:hover {
     height: 100%;
     overflow: hidden;
     transition: left 0.3s ease;
-    padding-top: 50px;
+    padding-top: 90px;
     padding-left: 20px;
     font-family: 'Vend Sans', sans-serif;
     font-size: 17px;

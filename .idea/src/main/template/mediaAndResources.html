@@ -7,323 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery — Investigating Keupstraße</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --blue: rgb(23, 61, 245);
-      --white: #ffffff;
-      --font: 'DM Mono', monospace;
-    }
-
-    body {
-      background: var(--blue);
-      font-family: var(--font);
-      min-height: 100vh;
-      padding-bottom: 60px;
-    }
-
-    /* ── HEADER ── */
-    .gallery-header {
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 20px;
-      text-align: center;
-      padding: 15px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      color: black;
-      border-bottom: 1px solid var(--blue);
-      z-index: 100;
-    }
-
-    .gallery-header-link {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--blue);
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .gallery-header-link:visited { color: var(--blue); }
-    .gallery-header-link:hover { text-decoration: underline; }
-
-    /* ── FOOTER ── */
-    .gallery-footer {
-      font-family: var(--font);
-      font-size: 14px;
-      background: white;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 17px;
-      border-top: 1px solid var(--blue);
-      color: black;
-    }
-
-    /* ── MAIN WRAP ── */
-    .gallery-wrap {
-      padding-top: 80px;
-      padding-bottom: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .gallery-title-row {
-      width: 100%;
-      max-width: 1100px;
-      padding: 24px 24px 12px;
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-    }
-
-    .gallery-title {
-      font-family: var(--font);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: white;
-    }
-
-    .gallery-count {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.1em;
-    }
-
-    /* ── TABLE ── */
-    .gallery-table-wrap {
-      width: 100%;
-      max-width: 1100px;
-      padding: 0 24px;
-    }
-
-    .gallery-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid white;
-    }
-
-    .gallery-table td {
-      border: 1px solid white;
-      padding: 0;
-      vertical-align: top;
-      width: 25%;
-    }
-
-    .gallery-table thead td {
-      padding: 10px 14px;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: white;
-      border-bottom: 1px solid white;
-    }
-
-    /* ── IMAGE CELL ── */
-    .gallery-cell {
-      position: relative;
-      cursor: pointer;
-      overflow: hidden;
-      aspect-ratio: 1 / 1;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .gallery-cell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .gallery-cell:hover img {
-      transform: scale(1.04);
-      filter: brightness(0.6);
-    }
-
-    .gallery-cell-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 12px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    .gallery-cell:hover .gallery-cell-overlay {
-      opacity: 1;
-    }
-
-    .gallery-cell-title {
-      font-family: var(--font);
-      font-size: 11px;
-      color: white;
-      letter-spacing: 0.06em;
-      line-height: 1.4;
-    }
-
-    .gallery-cell-date {
-      font-size: 10px;
-      color: rgba(255,255,255,0.6);
-      margin-top: 2px;
-    }
-
-    /* empty cell placeholder */
-    .gallery-cell-empty {
-      aspect-ratio: 1 / 1;
-      background: rgba(255,255,255,0.03);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gallery-cell-empty span {
-      font-size: 10px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ── LIGHTBOX ── */
-    .gallery-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      animation: lbFadeIn 0.2s ease;
-    }
-
-    .gallery-lightbox.open { display: flex; }
-
-    @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .gallery-lightbox-inner {
-      position: relative;
-      max-width: 860px;
-      width: 92%;
-      background: white;
-      border: 1px solid white;
-      animation: lbSlide 0.22s cubic-bezier(.22,.68,0,1.2);
-    }
-
-    @keyframes lbSlide {
-      from { transform: translateY(12px); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-
-    .gallery-lightbox-img {
-      width: 100%;
-      max-height: 60vh;
-      object-fit: contain;
-      display: block;
-      background: black;
-    }
-
-    .gallery-lightbox-meta {
-      padding: 14px 16px;
-      border-top: 1px solid var(--blue);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .gallery-lightbox-info {
-      font-family: var(--font);
-      font-size: 12px;
-      color: black;
-      line-height: 1.6;
-    }
-
-    .gallery-lightbox-info .lb-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: black;
-      margin-bottom: 2px;
-    }
-
-    .gallery-lightbox-info .lb-caption {
-      color: #555;
-      font-size: 11px;
-    }
-
-    .gallery-lightbox-info .lb-source {
-      color: var(--blue);
-      font-size: 10px;
-      word-break: break-all;
-      text-decoration: none;
-    }
-
-    .gallery-lightbox-close {
-      background: none;
-      border: 1px solid var(--blue);
-      color: var(--blue);
-      font-family: var(--font);
-      font-size: 11px;
-      padding: 6px 12px;
-      cursor: pointer;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .gallery-lightbox-close:hover {
-      background: var(--blue);
-      color: white;
-    }
-
-    /* ── NAV ARROWS ── */
-    .gallery-lightbox-nav {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .lb-arrow {
-      background: none;
-      border: 1px solid var(--blue);
-      color: var(--blue);
-      font-family: var(--font);
-      font-size: 16px;
-      width: 34px;
-      height: 34px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .lb-arrow:hover { background: var(--blue); color: white; }
+  <link rel="stylesheet" href="../style/styles.css">
+  <link rel="stylesheet" href="../style/mediaAndResources.css">
 
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
-      .gallery-table td { width: 50%; }
-    }
-  </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="gallery-header">
-  SYSTEM VERSAGEN IN DER KEUPSTRASSE
-  <a class="gallery-header-link" href="index.html">← BACK TO MAIN</a>
+<div class="header">
+  <div class="icon" onclick="toggleNavbar()">☰</div>
+  SYSTEM FAILURE IN KEUPSTRASSE
+  <a class="header-link" target="_blank" rel="noopener noreferrer"
+     href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT US</a>
+</div>
+<div class="navbar" id="navbar">
+  <div class="navbar-header">The Project</div>
+  <a rel="mainpage" href="index.html">MAIN</a>
+  <a style="cursor: pointer" onclick="openImageOverlay('../../resources/projectDescription.png'  )"> PROJECT DESCRIPTION</a>
+  <a  rel="timeline" href="../template/timeline.html">TIMELINE</a>
+  <a href="../template/mediaAndResources.html">SOURCES</a>
+  <a  target="_blank" rel="noopener noreferrer" href="https://www.notion.so/Investigating-Keupstra-e-2c64a3f7f37280a4aee7d91c912a2e72?source=copy_link">DOCUMENTATION</a>
+  <a href="glossar.html">GLOSSAR</a>
+  <br>
+  <div class="navbar-header">Programme</div>
+  <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/#news">EXHIBITIONS</a>
+  <br>
+  <div class="navbar-header">About</div>
+  <a  target="_blank" rel="noopener noreferrer" href="https://github.com/emmalaur/emmalaur-github.io?tab=License-1-ov-file">SOURCE CODE</a>
+  <a href="../template/license.html">LICENSE</a>
+  <a href="../template/contact.html">CONTACT</a>
 </div>
 
 <div class="gallery-wrap">
@@ -370,118 +81,11 @@
 </div>
 
 <!-- Footer -->
-<div class="gallery-footer">
+<div class="footer">
   © 2026 Investigating Keupstraße. Do No Harm License.
 </div>
 
-<script>
-  // ── DATA ──────────────────────────────────────────────────────────────────────
-  let images = [
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s",
-      title: "Keupstraße After the Attack",
-      caption: "The street shortly after the nail bomb explosion on 9 June 2004.",
-      source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ088T8eOprVaBj7gYR6N1yxsWD3rZP6up5vw&s",
-      date: "09.06.2004"
-    },
-    {
-      url: "https://via.placeholder.com/400x400/173DF5/ffffff?text=Image+2",
-      title: "Placeholder Image",
-      caption: "Replace with a real image.",
-      source: "",
-      date: ""
-    },
-  ];
-
-  let currentLbIdx = 0;
-
-  // ── RENDER TABLE ──────────────────────────────────────────────────────────────
-  function renderGallery() {
-    const tbody = document.getElementById('gallery-tbody');
-    tbody.innerHTML = '';
-
-    const cols = 4;
-    const rows = Math.ceil(images.length / cols);
-
-    for (let r = 0; r < rows; r++) {
-      const tr = document.createElement('tr');
-      for (let c = 0; c < cols; c++) {
-        const idx = r * cols + c;
-        const td = document.createElement('td');
-
-        if (idx < images.length) {
-          const img = images[idx];
-          td.innerHTML = `
-            <div class="gallery-cell" onclick="openLightbox(${idx})">
-              <img src="${img.url}" alt="${img.title}" onerror="this.style.display='none'">
-              <div class="gallery-cell-overlay">
-                <div class="gallery-cell-title">${img.title}</div>
-                <div class="gallery-cell-date">${img.date || ''}</div>
-              </div>
-            </div>
-          `;
-        } else {
-          td.innerHTML = `<div class="gallery-cell-empty"><span>—</span></div>`;
-        }
-        tr.appendChild(td);
-      }
-      tbody.appendChild(tr);
-    }
-
-    // update count
-    document.getElementById('gallery-count').textContent =
-            `${images.length} image${images.length !== 1 ? 's' : ''}`;
-  }
-
-  // ── LIGHTBOX ──────────────────────────────────────────────────────────────────
-  function openLightbox(idx) {
-    currentLbIdx = idx;
-    updateLightbox();
-    document.getElementById('gallery-lightbox').classList.add('open');
-  }
-
-  function updateLightbox() {
-    const img = images[currentLbIdx];
-    document.getElementById('lb-img').src = img.url;
-    document.getElementById('lb-img').alt = img.title;
-    document.getElementById('lb-title').textContent = img.title;
-    document.getElementById('lb-caption').textContent = img.caption || '';
-    const src = document.getElementById('lb-source');
-    if (img.source) {
-      src.href = img.source;
-      src.textContent = img.source;
-      src.style.display = '';
-    } else {
-      src.style.display = 'none';
-    }
-  }
-
-  function closeLightbox() {
-    document.getElementById('gallery-lightbox').classList.remove('open');
-  }
-
-  function lbNav(dir) {
-    currentLbIdx = (currentLbIdx + dir + images.length) % images.length;
-    updateLightbox();
-  }
-
-  // close on backdrop click
-  document.getElementById('gallery-lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
-  });
-
-  // keyboard nav
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('gallery-lightbox').classList.contains('open')) return;
-    if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'ArrowLeft')  lbNav(-1);
-    if (e.key === 'Escape')     closeLightbox();
-  });
-
-
-
-  // ── INIT ──────────────────────────────────────────────────────────────────────
-  renderGallery();
-</script>
+<script src="../script/main.js"></script>
+<script src="../script/mediaAndRecources.js"></script>
 </body>
 </html>

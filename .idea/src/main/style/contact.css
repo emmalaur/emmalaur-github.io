@@ -1,24 +1,27 @@
 
 body {
     font-family: "DM Mono", monospace;
-    color: white;
     background: rgb(23, 61, 245);
     margin: 0;
 }
 
-table, td {
+.contact-info table, td {
     border: 1px solid white;
     border-collapse: collapse;
     padding: 10px;
+    color: white;
 }
 
-a {
+.contact-info a {
     text-decoration: none;
     color: white;
 }
-a:hover {
+.contact-info a:hover {
     background: white;
     color: rgb(23, 61, 245);
+}
+.contact-info a:visited {
+    color: white;
 }
 p{
     font-family: "DM Mono", monospace;
@@ -38,6 +41,6 @@ p{
     align-items: center;
     justify-content: center;
     text-align: center;
-    top: 320px;
+    top: 400px;
     margin: 0 auto;
 }

@@ -7,26 +7,25 @@
     <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/styles.css">
     <link rel="stylesheet" href="../style/timeline.css">
-    <script src="../script/main.js"></script>
-    <script src="../script/timeline.js"></script>
+    <script src="../script/main.js" defer></script>
+    <script src="../script/timeline.js" defer></script>
     <title>Investigating Keupstraße</title>
 </head>
 
 <body>
 <div class="header">
-
-    SYSTEM VERSAGEN IN DER KEUPSTRASSE
+    <div class="icon" onclick="toggleNavbar()">☰</div>
+    SYSTEM FAILURE IN KEUPSTRASSE
     <a class="header-link" target="_blank" rel="noopener noreferrer"
-       href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT THE INITIATIVE</a>
+       href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT US</a>
 </div>
-<div class="icon" onclick="toggleNavbar()">☰</div>
 <div class="navbar" id="navbar">
     <div class="navbar-header">The Project</div>
     <a rel="mainpage" href="index.html">MAIN</a>
     <a style="cursor: pointer" onclick="openImageOverlay('../../resources/projectDescription.png'  )"> PROJECT DESCRIPTION</a>
     <a  rel="timeline" href="../template/timeline.html">TIMELINE</a>
-    <a href="#link2">SOURCES</a>
-    <a href="#link3">DOCUMENTATION</a>
+    <a href="../template/mediaAndResources.html">SOURCES</a>
+    <a  target="_blank" rel="noopener noreferrer" href="https://www.notion.so/Investigating-Keupstra-e-2c64a3f7f37280a4aee7d91c912a2e72?source=copy_link">DOCUMENTATION</a>
     <a href="glossar.html">GLOSSAR</a>
     <br>
     <div class="navbar-header">Programme</div>
@@ -82,7 +81,9 @@
             <td class="td-bottom">
                 <a class="td-bottom-documentary" onclick="openImageOverlay('../../resources/projectDescription.png' )">PROJECT DESCRIPTION</a>
             </td>
-            <td class="td-bottom">MEDIA & RECOURCES</td>
+            <td class="td-bottom">
+                <a href="mediaAndResources.html">MEDIA & RECOURCES</a>
+            </td>
         </tr>
     </table>
 </div>
