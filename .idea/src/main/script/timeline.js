@@ -44,6 +44,25 @@ let nodes = [
         factSource: "https://podcasts.apple.com/de/podcast/nsu-terror-mitten-in-deutschland/id1550077464?l=en-GB&i=1000558146771",
 
     },
+    {
+        date: "2014-06-09",
+        category: "Government",
+        docMinute: "1h 10min",
+        title: "Joachim Gauck visits Keupstraße at the 10th anniversary of the attack",
+        content: {
+            text: "The then-president visited the hair salon in the presence of the media." +
+                " According to one of the victims, Abdullah Ö., this seemed rather like a media stunt than a geniuine interest. " +
+                "According to him none of the victims received the psychological care that they deserved and needed. ",
+            media: {
+                type: "image",
+                url: "https://rp-online.de/imgs/32/1/2/0/7/9/4/3/5/tok_7f01c6b5ced07152256ba84f353638cf/w765_h429_x470_y264_2824fd3aae2b0662.jpg",
+                alt: "Joachim Gauck visiting Kuaför Özdemir"
+            }
+        },
+        source: "https://rp-online.de/imgs/32/1/2/0/7/9/4/3/5/tok_7f01c6b5ced07152256ba84f353638cf/w765_h429_x470_y264_2824fd3aae2b0662.jpg",
+        factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+    },
 
     {
         date: "2011-11-11",
