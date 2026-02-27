@@ -43,7 +43,12 @@ let nodes = [
         source: "https://www.bundestag.de/resource/image/242128/3x2/475/316/c5366bd0dbb7534a077d3ea0043f40ad/804761710A863DF58B164E62A9B1EA4A/alterspraesidenten_11_otto_schily_bild.jpg",
         factSource: "https://podcasts.apple.com/de/podcast/nsu-terror-mitten-in-deutschland/id1550077464?l=en-GB&i=1000558146771",
 
+        connections: [
+            { to: "Police interrogation the evening of the attack", style: "dotted" }
+        ]
+
     },
+
     {
         date: "2014-06-09",
         category: "Government",
@@ -61,6 +66,10 @@ let nodes = [
         },
         source: "https://rp-online.de/imgs/32/1/2/0/7/9/4/3/5/tok_7f01c6b5ced07152256ba84f353638cf/w765_h429_x470_y264_2824fd3aae2b0662.jpg",
         factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+
+        connections: [
+            { to: "Failure to uphold promise of memorial", style: "dotted" }
+        ]
 
     },
 
@@ -171,7 +180,35 @@ let nodes = [
         },
         source: "https://www.cinestar.de/media/cache/web_xl/media/filmbilder/d/der-kuafoer-aus-der-keupstrasse/16020290.JPG",
         factSource: "https://www.bpb.de/mediathek/video/548820/der-kuafoer-aus-der-keupstrasse/",
+        connections: [
+            { to: "Police interrogation the evening of the attack", style: "dotted" }
+        ]
 
+    },
+    {
+        date: "1998-01-01",
+        dateRange: "1998 & 2004",
+        category: "Police",
+        title: "Missed opportunities to catch the NSU",
+        content: {
+            text: "In early 1998, when the NSU went into hiding, police discovered contact addresses of right-wing extremists in Jena. " +
+                "Had this list been analysed (which it was not) the group would likely have been caught before the murders occurred. " +
+                "A second opportunity was missed in 2004: following the Cologne nail bomb attack, a search of the Federal Criminal " +
+                "Office's explosives database would have identified Böhnhardt and Mundlos as suspects. This too was not done. " +
+                "The parliamentary inquiry report documents a consistent failure of inter-agency cooperation. In Brandenburg, " +
+                "an informant's tip about the group's attempts to obtain weapons never reached investigators in Thuringia — " +
+                "a consequence of the open conflict between police and intelligence services operating in the same state.",
+            media: {
+                type: "image",
+                url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtQJgZP5kxtuMYJTxe5ujJQvHBdpBCNjbhGA&s",
+                alt: "Police 2004"
+            }
+        },
+        source: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtQJgZP5kxtuMYJTxe5ujJQvHBdpBCNjbhGA&s",
+        factSource: "https://www.bundestag.de/webarchiv/textarchiv/2014/kw45_ak_nsu-338428",
+        connections: [
+            { to: "Nail Bomb Attack", style: "dotted" }
+        ]
     },
 
     {
@@ -276,7 +313,7 @@ let nodes = [
         docMinute: "37:00",
         content: {
             text: "Klaus Steffen, Chief of Police in Cologne from 1999 to 2011, stated that even as late as 2015 he was unable to assess whether procedural" +
-                " errors had occurred during the investigation. He deflected all responsibility, asserting that he had no direct oversight of the seven-year-long investigative proceedings.r",
+                " errors had occurred during the investigation. He deflected all responsibility, asserting that he had no direct oversight of the seven-year-long investigative proceedings.",
             media: {
                 type: "image",
                 url: "https://www.ruhrnachrichten.de/wp-content/uploads/2024/11/22/20/630_0900_4273851_6433189.jpg",
