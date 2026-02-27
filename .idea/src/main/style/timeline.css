@@ -114,7 +114,10 @@ svg#timeline {
 
     transition: border-color 0.2s, color 0.2s;
 }
-#add-btn:hover { border-color: var(--accent); color: var(--accent); }
+#add-btn:hover {
+    background-color: rgb(23, 61, 245);
+    color: white;
+    border-color: rgb(23, 61, 245); }
 
 
 /* Category labels */
