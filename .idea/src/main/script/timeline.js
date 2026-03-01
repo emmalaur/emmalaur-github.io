@@ -694,36 +694,51 @@ function closeAddForm() {
     document.getElementById('form-overlay').classList.remove('open');
 }
 
-function submitNodeByEmail() {
-    const date = document.getElementById('f-date').value;
+async function submitNodeByEmail() {
+    const date     = document.getElementById('f-date').value;
     const category = document.getElementById('f-category').value;
-    const title = document.getElementById('f-title').value.trim();
-    const text = document.getElementById('f-text').value.trim();
-    const source = document.getElementById('f-source').value.trim();
-    const image = document.getElementById('f-image').value.trim();
+    const title    = document.getElementById('f-title').value.trim();
+    const text     = document.getElementById('f-text').value.trim();
+    const source   = document.getElementById('f-source').value.trim();
+    const image    = document.getElementById('f-image').value.trim();
 
     if (!date || !title) {
         alert('Please fill in at least the Date and Title.');
         return;
     }
 
-    const subject = encodeURIComponent(`[Timeline Node] ${title} (${date})`);
-    const body = encodeURIComponent(
-        `New timeline node submission:
+    try {
+        const response = await fetch('https://formspree.io/f/mdalvzok', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                date:     date,
+                category: category,
+                title:    title,
+                text:     text     || '(none)',
+                source:   source   || '(none)',
+                image:    image    || '(none)'
+            })
+        });
 
-Title:    ${title}
-Date:     ${date}
-Category: ${category}
-Text:     ${text || '(none)'}
-Source:   ${source || '(none)'}
-Image:    ${image || '(none)'}
-
----
-Submitted via the Timeline tool.`
-    );
-
-    window.location.href = `mailto:emmareeb@gmail.com?subject=${subject}&body=${body}`;
-    closeAddForm();
+        if (response.ok) {
+            alert('Your suggestion has been submitted. Thank you!');
+            closeAddForm();
+        } else {
+            const data = await response.json();
+            if (data.errors) {
+                alert('Submission failed: ' + data.errors.map(e => e.message).join(', '));
+            } else {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+    } catch (error) {
+        alert('Could not send submission. Please check your internet connection.');
+        console.error('Formspree error:', error);
+    }
 }
 
 
