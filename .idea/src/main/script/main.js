@@ -43,3 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMarkdown();
     }
 });
+function setLang(lang) {
+    document.querySelectorAll('.lang').forEach(el => {
+        el.style.display = 'none';
+    });
+    document.querySelectorAll('.lang.' + lang).forEach(el => {
+        el.style.display = '';
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+}

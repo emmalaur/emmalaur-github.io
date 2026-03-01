@@ -338,19 +338,23 @@ svg#timeline {
     border: none;
     font-family: 'DM Mono', monospace;
     cursor: pointer;
-
-    transition: border-color 0.2s, color 0.2s;
 }
-.btn-cancel:hover { border-color: var(--muted); color: var(--text); }
+.btn-cancel:hover {
+    background: rgb(23, 61, 245);
+    color: white;
+}
 
 .btn-send {
     background: var(--accent);
     border: none;
     font-family: 'DM Mono', monospace;
     cursor: pointer;
-    transition: opacity 0.2s;
+
 }
-.btn-send:hover { border-color: var(--muted); color: var(--text); }
+.btn-send:hover {
+    background: rgb(23, 61, 245);
+    color: white;
+}
 
 #line-example {
     align-self: flex-start;
@@ -367,3 +371,10 @@ svg#timeline {
     margin-top: 40px;
     max-width: 650px ;
 }
+textarea, input {
+    border: none;
+    color: black;
+    padding:15px;
+}
+
+
