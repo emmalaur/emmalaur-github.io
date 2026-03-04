@@ -56,3 +56,9 @@ function setLang(lang) {
     const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
     if (activeBtn) activeBtn.classList.add('active');
 }
+document.addEventListener('DOMContentLoaded', () => {
+    setLang('en'); // initialise default language
+    if (document.getElementById('licenseContent')) {
+        loadMarkdown();
+    }
+});
