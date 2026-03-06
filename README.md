@@ -30,7 +30,7 @@ It was developed as a **5th semester university project** at [Code & Context, TH
 
 This project is open source. You are free to use, adapt, and build upon it in accordance with the terms of the project Do No Harm license.
 
-📄 See [`LICENSE`](./LICENSE) for full details.
+📄 See [`LICENSE`](./LICENSE.md) for full details.
 
 ---
 
