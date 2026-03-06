@@ -680,7 +680,7 @@ function toggleLines() {
 }
 
 function openAddForm() {
-    // Reset form
+
     document.getElementById('f-date').value = '2005-01-01';
     document.getElementById('f-category').value = 'NSU';
     document.getElementById('f-title').value = '';

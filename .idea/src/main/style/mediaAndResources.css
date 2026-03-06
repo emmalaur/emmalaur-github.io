@@ -277,7 +277,7 @@ body {
     color: white;
 }
 
-/* ── NAV ARROWS ── */
+
 .gallery-lightbox-nav {
     display: flex;
     gap: 8px;
@@ -302,7 +302,6 @@ body {
 .lb-arrow:hover { background: var(--blue); color: white; }
 
 
-/* ── RESPONSIVE ── */
 @media (max-width: 700px) {
     .gallery-table td { width: 50%; }
 }

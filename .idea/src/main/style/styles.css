@@ -260,10 +260,9 @@ td a:hover {
     transform: scale(0.75);
     transform-origin: top left;
     pointer-events: none;
-    top: -145px;   /* ← move up/down: negative = up, positive = down */
-    left: 300px; /* ← move left/right: negative = left, positive = right */
+    top: -145px; /*;    i-frame position*/
+    left: 300px;
 }
-
 
 .timeline-preview-overlay {
     position: absolute;
