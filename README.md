@@ -68,8 +68,8 @@ Contributions are welcome. Whether that means correcting information, adding tra
 
 For questions, collaboration requests, or to report inaccuracies, please reach out:
 
-**Project lead:** Emma Reeb
-**Email:** emmareeb@gmail.com
+**Project lead:** Emma Reeb  
+**Email:** emmareeb@gmail.com  
 **Institution:** Code & Context, TH Köln  
 **Partner organisation in this Project:** [Initiative Keupstraße ist überall](https://www.keupstrasse-ist-ueberall.de/)
 
