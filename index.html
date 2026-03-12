@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="../style/timeline.css">
+    <script src="../script/main.js" defer></script>
+    <script src="../script/timeline.js" defer></script>
+    <title>Investigating Keupstraße</title>
+</head>
+
+<body>
+<div class="header">
+    <div class="icon" onclick="toggleNavbar()">☰</div>
+    SYSTEM[VERSAGEN] IN DER KEUPSTRAßE
+    <a class="header-link" target="_blank" rel="noopener noreferrer"
+       href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT KEUPSTRAßE</a>
+</div>
+<div class="navbar" id="navbar">
+    <div class="navbar-header">The Project</div>
+    <a rel="mainpage" href="index.html">MAIN</a>
+    <a style="cursor: pointer" onclick="openImageOverlay('../../resources/images/projectDescription.png'  )"> PROJECT
+        DESCRIPTION</a>
+    <a rel="timeline" href="timeline.html">TIMELINE</a>
+    <a href="mediaAndResources.html">MEDIA & RESOURCES</a>
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.notion.so/Investigating-Keupstra-e-2c64a3f7f37280a4aee7d91c912a2e72?source=copy_link">DOCUMENTATION</a>
+    <a href="glossar.html">GLOSSAR</a>
+    <br>
+    <div class="navbar-header">Programme</div>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/#news">EXHIBITIONS</a>
+    <br>
+    <div class="navbar-header">About</div>
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://github.com/emmalaur/emmalaur-github.io?tab=License-1-ov-file">SOURCE CODE</a>
+    <a href="license.html">LICENSE</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+<div class="main-table" id="main-table">
+    <table class="body-text td-bottom">
+        <tr>
+            <td>DATE OF INCIDENT
+                <p> 09.06.2004</p>
+            </td>
+            <td>LOCATION
+                <p>Keupstraße, Cologne</p>
+            </td>
+            <td>PUBLICATION DATE
+                <p>20 JAN 2026</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="partnership-cell">IN PARTNERSHIP WITH <br>
+
+                <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/">Initiative
+                    Keupstraße ist überall</a>, <a target="_blank" rel="noopener noreferrer" href="https://coco.study/">Code
+                    & Context</a>
+            </td>
+            <td>PROJECT NAME
+                <p>Investigating Keupstraße</p>
+            </td>
+            <td>SEMESTER
+                <p>5th</p>
+            </td>
+        </tr>
+        <tr>
+            <td>METHODOLOGIES
+                <p>software development, research, data representation</p>
+            </td>
+            <td>TYPE
+                <p>open source</p>
+            </td>
+            <td>EXHIBITIONS
+                <p>Schanzenstraße 22, 51063 Cologne, Germany</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-bottom">
+                <a href="timeline.html"> TIME LINE </a>
+            </td>
+            <td class="td-bottom">
+                <a class="td-bottom-documentary" onclick="openImageOverlay('../../resources/images/projectDescription.png' )">PROJECT
+                    DESCRIPTION</a>
+            </td>
+            <td class="td-bottom">
+                <a href="mediaAndResources.html">MEDIA & RESOURCES</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<a href="timeline.html" class="timeline-preview-link">
+    <div class="timeline-preview-wrap">
+        <iframe
+                src="timeline.html"
+                class="timeline-preview-frame"
+                scrolling="no"
+                tabindex="-1">
+        </iframe>
+        <div class="timeline-preview-overlay"></div>
+    </div>
+</a>
+
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+</div>
+
+<div class="written-content">
+    <h1 class="written-content title">
+        <span class="lang en">Introduction</span>
+        <span class="lang de" style="display:none">Einleitung</span>
+        <span class="lang tr" style="display:none">Giriş</span>
+    </h1>
+    <br>
+    <p class="written-content body-text">
+        <span class="lang en"> According to Cambridge Dictionary a
+        <a href="glossar.html#glossar-system">system</a> can be described as “a set
+        of connected things or devices that operate together. Often associated with computing.
+
+        In sociological terms, a <a href="glossar.html#glossar-system">system</a> is not reducible to a collection of
+        institutions or administrative procedures.
+        It entails the organised totality of social structures, power relations, and ideological frameworks that
+        determine how a society functions and, critically, whose interests that functioning serves. When such structures
+        produce consistent, measurable harm against specific populations while simultaneously extending protection to
+        others, the characterisation of such outcomes as systemic failure requires investigation.
+        <br><br>
+        The events that followed the NSU nail bomb attack of the 9th of June 2004 in Keupstraße are widely described as a failure
+        of the German legal and investigative <a href="glossar.html#glossar-system">system</a>. The former minister of justice in Germany, Haiko Maas, even named it to be a case of "system failure" ("...nichts anderes als ein großes Staatsversagen.", 2016)
+        <br>
+        Investigators directed suspicion toward the victims. Evidence was
+        destroyed. Survivors were subjected to interrogation rather than protection. Institutional actors deflected
+        accountability. However, to frame these events exclusively as failure carries the implicit premise that the
+        <a href="glossar.html#glossar-system">system</a>, under ordinary circumstances, would have operated justly and impartially. The historical and
+        sociological record does not substantiate that premise.
+        <br><br>
+        What the Keupstraße case makes visible is a <a href="glossar.html#glossar-system">system</a> operating under the sustained influence of <a
+                    href="glossar.html#glossar-structuralRacism">structural-racism</a>.
+        It further demonstrates the operation of institutional racism, whereby organisations nominally
+        tasked with the equal protection of all citizens apply their mandate selectively, shaped by an inherited
+        ideology that assigns unequal value to different lives. Alongside these, the case reflects the logic of
+        <a href="glossar.html#glossar-neoRacism">neo-racism</a> .
+        <br><br>
+        These dynamics are not exceptional. They are manifestations of a pervasive social doxa the unspoken, naturalised
+        assumptions embedded within institutional culture regarding who belongs, who merits protection, and whose
+        suffering warrants urgent response. <a
+                    href="glossar.html#glossar-bias">Bias</a>, operating at both individual and structural levels, shaped
+        investigative decisions at every stage of the proceedings. <a
+                    href="glossar.html#glossar-xenophobia">Xenophobia</a> structured the institutional
+        gaze directed at Keupstraße. <a href="glossar.html#glossar-classism">Classism</a> ensured that a working-class, migrantised community lacked
+        the political capital and institutional access necessary to compel accountability.
+        <br><br>
+        It could be said that the <a href="glossar.html#glossar-system">system</a> was never designed to protect everyone equally, so when it fails marginalised
+        communities, it is not breaking its own rules. It is following them. The harm experienced by these communities
+        in that sense is a predictable outcome of how the <a href="glossar.html#glossar-system">system</a> was constructed and for whom.
+        <br><br>
+        The title System[versagen]/ System Failure is nonetheless the chosen title of this project. It is not used uncritically but
+        in full awareness of the paradox it poses. The title can rather be seen as critique of a <a
+                    href="glossar.html#glossar-system">system</a> that does not uphold what it states in its constitution which is the equal treatment of all.</span>
+
+        <span class="lang de" style="display:none">Laut dem Cambridge Dictionary lässt sich ein System als „eine Reihe miteinander verbundener Dinge oder Geräte, die zusammen funktionieren" (aus dem Englischen übersetzt) beschreiben. Es ist ein Begriff, der häufig mit der Computertechnik assoziiert wird.
+<br><br>
+In soziologischer Hinsicht ist ein System nicht auf eine Ansammlung von Institutionen oder Verwaltungsverfahren reduzierbar. Es umfasst die organisierte Gesamtheit sozialer Strukturen, Machtverhältnisse und ideologischer Rahmenbedingungen, die bestimmen, wie eine Gesellschaft funktioniert und, entscheidend, wessen Interessen dieses Funktionieren dient. Wenn solche Strukturen konsistenten, messbaren Schaden gegenüber bestimmten Bevölkerungsgruppen erzeugen und gleichzeitig anderen Schutz gewähren, erfordert die Charakterisierung solcher Ergebnisse als systemisches Versagen eine eingehende Untersuchung.
+<br><br>
+Die Ereignisse, die auf den NSU-Nagelbombenanschlag vom 9. Juni 2004 in der Keupstraße folgten, werden weithin als Versagen des deutschen Rechts- und Ermittlungssystems beschrieben.  Der ehemalige Justiz Minister, Haiko Maas, benannte das geschehene Verfahren im Jahr 2016 sogar als "...nichts anderes als ein großes Staatsversagen ". Die Ermittler richteten den Verdacht gegen die Opfer(sog. Täter-Opfer-Umkehr). Beweise wurden vernichtet. Überlebende wurden verhört statt geschützt. Institutionelle Akteure entzogen sich der Verantwortung. Diese Ereignisse jedoch ausschließlich als Versagen zu rahmen, trägt die implizite Prämisse in sich, dass das System unter gewöhnlichen Umständen gerecht und unparteiisch funktioniert hätte. Der historische und soziologische Befund stützt diese Prämisse jedoch nicht.
+<br><br>
+Was der Fall Keupstraße sichtbar macht, ist ein System, das unter dem anhaltenden Einfluss von strukturellem Rassismus operiert. Er verdeutlicht darüber hinaus die Wirkungsweise von institutionellem Rassismus, bei dem Organisationen, die nominell mit dem gleichen Schutz aller Bürgerinnen und Bürger betraut sind, ihr Mandat selektiv anwenden, geprägt durch eine überlieferte Ideologie, die verschiedenen Leben ungleichen Wert beimisst. Daneben spiegelt der Fall die Existenz des Neo-Rassismus wider.
+<br><br>
+Diese Dynamiken sind keine Ausnahmeerscheinungen. Sie sind Manifestationen einer allgegenwärtigen sozialen Doxa – der unausgesprochenen, naturalisierten Annahmen, die in der institutionellen Kultur verankert sind und die Fragen betreffen: Wer gehört dazu, wer verdient Schutz und wessen Leiden eine dringende Reaktion rechtfertigt. Voreingenommenheit, die sowohl auf individueller als auch auf struktureller Ebene wirkt, prägte die Ermittlungsentscheidungen in jeder Phase des Verfahrens. Fremdenfeindlichkeit strukturierte den institutionellen Blick, der auf die Keupstraße gerichtet war. Klassismus sorgte dafür, dass einer der Arbeiterklasse angehörenden, migrantisierten Gemeinschaft das politische Kapital und der institutionelle Zugang fehlten, der notwendig gewesen wäre, um Rechenschaft einzufordern.
+<br><br>
+Man könnte sagen, dass das System nie darauf ausgelegt war, alle gleich zu schützen. Wenn es also marginalisierte Gemeinschaften im Stich lässt, bricht es nicht seine eigenen Regeln. Es befolgt sie. Der Schaden, den diese Gemeinschaften in diesem Sinne erfahren, ist ein vorhersehbares Ergebnis der Art und Weise, wie das System konstruiert wurde und für wen.
+<br><br>
+Der Titel System[versagen]/ System Failure ist der gewählte Titel dieses Projekts. Er wird nicht unkritisch verwendet, sondern im Bewusstsein des Paradoxons, das er aufwirft.</span>
+        <span class="lang tr" style="display:none">Cambridge Sözlüğü'ne göre Sistem "bir dizi bağlantılı şeyler veya cihazlar kümesi" olarak tanımlanabilir ve genellikle  bilgisayar bilimiyle ilişkilendirilir.
+
+Sosyolojik açıdan, bir sistem kurumlar veya idari prosedürler topluluğuna indirgenemez.
+            <br><br>
+            Bir sistem, bir toplumun nasıl işlediğini ve daha da önemlisi, bu işleyişin kimin çıkarlarına hizmet ettiğini belirleyen sosyal yapılar, güç ilişkileri ve ideolojik çerçevelerin organize bir bütünlüğünü içerir. Bu tür yapılar belirli nüfus gruplarına karşı tutarlı ve ölçülebilir zarar verirken, aynı zamanda diğerlerine koruma sağladığında, bu tür sonuçların sistemik başarısızlık olarak nitelendirilmesi araştırılmalıdır.
+<br><br>
+9 Haziran 2004'te Keupstraße'de NSU'nun çivi bombası saldırısının ardından yaşanan olaylar, genel olarak Alman hukuk ve soruşturma sisteminin başarısızlığı olarak tanımlanmaktadır. Soruşturmacılar şüpheyi kurbanlara yöneltti. Kanıtlar yok edildi. Hayatta kalanlar korunmak yerine sorguya çekildi. Kurumsal aktörler sorumluluktan kaçındı. Ancak, bu olayları yalnızca başarısızlık olarak nitelemek, normal koşullar altında sistemin adil ve tarafsız bir şekilde işlediğini ima eder. Tarihsel ve sosyolojik kayıtlar bu öncülü doğrulamamaktadır.
+<br><br>
+Keupstraße davası, yapısal ırkçılığın sürekli etkisi altında işleyen bir sistemi ortaya koymaktadır. Ayrıca, tüm vatandaşları eşit şekilde korumakla görevli kuruluşların, farklı yaşamlara eşit olmayan değerler atfeden miras alınan bir ideoloji tarafından şekillendirilen, seçici bir şekilde görevlerini yerine getirmelerini sağlayan kurumsal ırkçılığın işleyişini de göstermektedir. Bunların yanı sıra, dava neo-ırkçılığın mantığını da yansıtmaktadır.
+<br><br>
+Bu dinamikler istisnai değildir. Bunlar, kurumsal kültürün içine yerleşmiş, kimin ait olduğu, kimin korunmayı hak ettiği ve kimin acısının acil müdahaleyi gerektirdiği konusunda konuşulmayan, doğal kabul edilen varsayımların yaygın bir sosyal doxa'sının tezahürleridir. Hem bireysel hem de yapısal düzeyde işleyen önyargılar, yargılama sürecinin her aşamasında soruşturma kararlarını şekillendirmiştir. Yabancı düşmanlığı, Keupstraße'ye yönelik kurumsal bakış açısını yapılandırmıştır. Sınıfçılık, işçi sınıfı, göçmenleşmiş  bir topluluğun hesap verebilirliği sağlamak için gerekli olan siyasi sermaye ve kurumsal erişimden yoksun kalmasını sağladı.
+<br><br>
+Sistemin herkesi eşit şekilde korumak için tasarlanmadığı söylenebilir, bu nedenle marjinalleşmiş toplulukları koruyamadığında kendi kurallarını çiğnemiyor. Onları takip ediyor. Bu anlamda bu toplulukların yaşadığı zarar, sistemin nasıl ve kimin için inşa edildiğinin öngörülebilir bir sonucudur.
+<br><br>
+Systemversagen/ Sistem Arızası, bu projenin seçilen başlığıdır. Eleştirel bir yaklaşımla değil, ortaya koyduğu paradoksu bilerek kullanılmaktadır.
+
+</span>
+    </p>
+
+
+    <div class="written-content-image-wrap">
+        <img src="https://www.rheinische-industriekultur.com/bilder/objekte/koeln/felten_guilleaume/gesamtanlage/fg-gesamt_1.png"
+             alt="Felten & Guilleaume factory, Cologne-Mülheim">
+        <p class="image-caption">The Carlswerke in Mülheim, Cologne. <a
+                href="https://www.rheinische-industriekultur.com/seiten/objekte/orte/koeln/objekte/fundg.html"> Source:
+            rheinische-industriekultur.com</a></p>
+    </div>
+
+
+    <div class="written-content">
+        <h1 class="written-content title">
+            <span class="lang en">Background</span>
+            <span class="lang de" style="display:none">Hintergrund</span>
+            <span class="lang tr" style="display:none">Içyüz</span>
+        </h1>
+        <br>
+        <p class="written-content body-text">
+        <span class="lang en">
+        An adequate understanding of the events in Keupstraße requires situating them
+        within the broader historical and structural context of the district in which they occurred. Cologne-Mülheim,
+        lies on the eastern bank of the Rhein and possesses a history that to a significant extent prepared the
+        conditions for the later “System- failure”.
+        <br><br>
+        Mülheim developed as an industrial district during the nineteenth and early twentieth centuries, shaped
+        primarily by the demands of industrial capital rather than by civic planning oriented toward the welfare of its
+        residents. Its social structure was organised around the working class, meaning factory workers, tradespeople,
+        and their households. The district was consistently given fewer resources and afforded less institutional
+        investment than more wealthy areas of Cologne, a disparity that has proven historically durable.
+        <br><br>
+        In the post-war decades, Mülheim became a primary destination for guest workers/Gastarbeiter recruited
+        predominantly from Turkey and Southern Europe to sustain West Germany's post-war economic recovery. The
+        communities established by these workers and their descendants were never fully integrated into the social and
+        political structures of German society. Their presence was instrumentalised for economic purposes while their
+        civic and social incorporation remained structurally impeded.
+        <br><br>
+        Keupstraße itself developed into the commercial and cultural centre of Cologne's Turkish and Kurdish community.
+        Its businesses, social spaces, and communal institutions constituted not merely an economic district but a site
+        of collective identity.
+        <br><br>
+        The demographic composition and economic character of the district made it vulnerable in further aspects. As
+        gentrification progressively reshaped Cologne's urban landscape, Mülheim occupied a contradictory position.
+        Historically neglected in terms of public investment, yet simultaneously becoming attractive to private
+        developers. The resulting economic pressures yielded no meaningful improvements for existing residents. On the
+        contrary, they accelerated rent prices, placing additional burden on the migrantised communities already subject
+        to structural disadvantage within the area.
+        <br><br>
+        The population of Mülheim has historically been among the most ethnically diverse in Cologne, with a substantial
+        proportion of residents of Turkish, Kurdish, Arab, and other non-German backgrounds. These predominantly <a
+                href="glossar.html#glossar-poc">POC</a>
+        communities navigated institutions that were not built with them in mind. Their relationship to
+        the state is not one of equal standing. It was and is shaped by racial hierarchy, class inequality, and power
+        relations that disadvantaged them both historically and in their everyday encounters with institutional
+        authority.
+        </span>
+            <span class="lang de">Ein angemessenes Verständnis der Ereignisse in der Keupstraße erfordert, diese in den breiteren historischen und strukturellen Kontext des Stadtteils einzubetten, in dem sie sich zugetragen haben. Köln-Mülheim liegt am östlichen Ufer des Rheins und besitzt eine Geschichte, die in erheblichem Maße die Bedingungen für das spätere „Systemversagen" vorbereitet hat.
+  <br><br>
+Mülheim entwickelte sich im neunzehnten und frühen zwanzigsten Jahrhundert zu einem Industrieviertel, geprägt vorrangig durch die Erfordernisse des Industriekapitals und weniger durch eine am Wohl seiner Bewohnerinnen und Bewohner orientierte städtische Planung. Seine Sozialstruktur organisierte sich um die Arbeiterklasse: Fabrikarbeiter, Handwerker und ihre Haushalte. Der Stadtteil wurde durchgängig mit weniger Ressourcen und geringerem institutionellem Investitionsaufwand bedacht als wohlhabendere Gebiete Kölns. Ein Missverhältnis, das sich als historisch beständig erwiesen hat.
+  <br><br>
+In den Nachkriegsjahrzehnten wurde Mülheim zu einem der wichtigsten Zielorte für Gastarbeiter, die vorwiegend aus der Türkei und Südeuropa angeworben wurden, um Westdeutschlands wirtschaftliche Erholung nach dem Krieg aufrechtzuerhalten. Die Gemeinschaften, die diese Arbeiter und ihre Nachkommen aufbauten, wurden niemals vollständig in die sozialen und politischen Strukturen der deutschen Gesellschaft integriert. Ihre Anwesenheit wurde für wirtschaftliche Zwecke instrumentalisiert, während ihre staatsbürgerliche und gesellschaftliche Eingliederung strukturell behindert blieb.
+  <br><br>
+Die Keupstraße selbst entwickelte sich zum kommerziellen und kulturellen Zentrum der türkischen und kurdischen Gemeinschaft Kölns. Ihre Geschäfte, sozialen Räume und gemeinschaftlichen Einrichtungen bildeten nicht lediglich ein Wirtschaftsviertel, sondern einen Ort kollektiver Identität. Für diejenigen, die dort lebten und arbeiteten, verkörperte sie eine Form der Zugehörigkeit, die in Abwesenheit vollständiger Anerkennung durch die umliegende Gesellschaft entstanden war.
+  <br><br>
+Die demografische Zusammensetzung und der wirtschaftliche Charakter des Viertels machten es in weiterer Hinsicht verwundbar. Da die Gentrifizierung die städtische Landschaft Kölns zunehmend umgestaltete, nahm Mülheim eine widersprüchliche Position ein: historisch vernachlässigt in Bezug auf öffentliche Investitionen, gleichzeitig jedoch für private Investoren zunehmend attraktiv werdend. Der daraus resultierende wirtschaftliche Druck zeitigte keine nennenswerten Verbesserungen für die bestehende Bevölkerung. Im Gegenteil: Er beschleunigte den Anstieg der Mietpreise und legte der migrantisierten Gemeinschaft, die innerhalb des Gebietes ohnehin bereits strukturellen Benachteiligungen ausgesetzt war, zusätzliche Lasten auf.
+  <br><br>
+Die Bevölkerung Mülheims gehörte historisch zu den ethnisch vielfältigsten in Köln, mit einem erheblichen Anteil an Bewohnerinnen und Bewohnern türkischer, kurdischer, arabischer und anderer nicht-deutscher Herkunft. Diese überwiegend POC Gemeinschaften navigierten Institutionen, die nicht mit ihnen im Sinn errichtet worden waren. Ihr Verhältnis zum Staat ist kein Verhältnis auf gleicher Augenhöhe. Es war und ist geprägt durch rassistische Hierarchie, Klassenungleichheit und Machtverhältnisse, die sie sowohl historisch als auch in ihren alltäglichen Begegnungen mit institutioneller Autorität benachteiligten.
+        </span>
+            <span class="lang tr">
+                Keupstraße'deki olayları yeterince anlamak için, bu olayları meydana geldikleri bölgenin daha geniş tarihsel ve yapısal bağlamı içinde ele almak gerekir. Köln-Mülheim, Ren Nehri'nin doğu yakasında yer alır ve önemli ölçüde daha sonraki “sistem başarısızlığı”nın koşullarını hazırlayan bir tarihe sahiptir.
+<br><br>
+Mülheim, on dokuzuncu ve yirminci yüzyılın başlarında, sakinlerinin refahına yönelik kentsel planlamadan çok, endüstriyel sermayenin talepleriyle şekillenen bir sanayi bölgesi olarak gelişti. Sosyal yapısı, fabrika işçileri, esnaf ve aileleri gibi işçi sınıfı etrafında şekillenmişti. Bölgeye, Köln'ün daha zengin bölgelerine kıyasla sürekli olarak daha az kaynak ayrıldı ve daha az kurumsal yatırım yapıldı; bu eşitsizlik tarihsel olarak kalıcı olduğu kanıtlanmıştır.
+<br><br>
+Savaş sonrası yıllarda Mülheim, Batı Almanya'nın savaş sonrası ekonomik toparlanmasını sürdürmek için ağırlıklı olarak Türkiye ve Güney Avrupa'dan getirilen misafir işçiler/Gastarbeiter için başlıca varış noktası haline geldi. Bu işçiler ve onların torunları tarafından kurulan topluluklar, Alman toplumunun sosyal ve siyasi yapılarına hiçbir zaman tam olarak entegre olamadılar. Onların varlığı ekonomik amaçlar için araçsallaştırılırken, sivil ve sosyal entegrasyonları yapısal olarak engellenmeye devam etti.
+<br><br>
+Keupstraße, Köln'deki Türk ve Kürt topluluğunun ticari ve kültürel merkezi haline geldi. Buradaki işletmeler, sosyal alanlar ve toplumsal kurumlar, sadece bir ekonomi bölgesi değil, aynı zamanda kolektif bir kimlik alanı oluşturdu. Burada yaşayan ve çalışanlar için bu bölge, çevredeki toplum tarafından tam olarak tanınmamalarına rağmen, bir aidiyet duygusu yaratan bir yerdi.
+<br><br>
+Bölgenin demografik yapısı ve ekonomik karakteri, onu başka açılardan da savunmasız hale getirdi. Gentrifikasyon Köln'ün kentsel peyzajını giderek yeniden şekillendirirken, Mülheim çelişkili bir konumda kaldı. Kamu yatırımları açısından tarihsel olarak ihmal edilmiş, ancak aynı zamanda özel müteahhitler için cazip hale gelmişti. Sonuçta ortaya çıkan ekonomik baskılar, mevcut sakinler için anlamlı bir iyileşme sağlamadı. Aksine, kira fiyatlarını hızlandırarak, bölgede zaten yapısal dezavantajlara maruz kalan göçmen topluluklara ek yük getirdi.
+<br><br>
+Mülheim'ın nüfusu tarihsel olarak Köln'ün etnik açıdan en çeşitli nüfuslarından biri olmuştur ve sakinlerinin önemli bir kısmı Türk, Kürt, Arap ve diğer Alman olmayan kökenlere sahiptir. Bu ağırlıklı olarak PoC toplulukları, kendileri için tasarlanmamış kurumlarla başa çıkmak zorunda kalmıştır. Devletle ilişkileri eşitlik temelinde değildir. Bu ilişki, tarihsel olarak ve kurumsal otoriteyle günlük karşılaşmalarında onları dezavantajlı konuma düşüren ırksal hiyerarşi, sınıf eşitsizliği ve güç ilişkileri tarafından şekillendirilmiştir.
+        </span>
+    </div>
+
+    <div class="written-content-image-wrap">
+        <img src="https://bilder.deutschlandfunk.de/FI/LE/_7/89/FILE_789d17e4de94c8589bb31995de3f99ec/29803603-jpg-102-1920x1080.jpg"
+             alt="The Hairsalon in front of which the bomb detonated">
+        <p class="image-caption">The Hairsalon in front of which the bomb detonated<a
+                href="https://www.deutschlandfunk.de/neonazi-anschlag-die-keupstrasse-zehn-jahre-nach-der-100.html">
+            Source: deutschlandfunk.de</a></p>
+    </div>
+
+    <div class="written-content">
+        <h1 class="written-content title">
+            <span class="lang en">To What Extent the Various Levels of Political Power Determined the Fate of the
+        People of Keupstraße</span>
+            <span class="lang de" style="display:none">Hintergrund</span>
+            <span class="lang tr" style="display:none">Aşağıda metnin Türkçe çevirisi, orijinal ifadeye mümkün olduğunca sadık kalınarak verilmiştir</span>
+        </h1>
+        <br>
+        <p class="written-content body-text">
+        <span class="lang en"> When the nail bomb detonated on Keupstraße on 9 June 2004, injuring twenty-two
+        people, four of them seriously, the state's institutions were obligated to protect the victims and pursue those
+        responsible. What followed instead was a dramatic failure of the German legal system and a seven-year reversal
+        of perpetrator and victim roles.
+        <br><br>
+        On the evening of the terror-attack, survivors were conveyed to police headquarters and subjected to
+        interrogation. Abdullah Ö., himself among those injured, was required to surrender his clothing for testing,
+        provide a saliva sample, and submit to procedures ordinarily applied to individuals under suspicion of criminal
+        involvement.
+        <br><br>
+        The investigative framework applied from the outset treated the community not as the victim of an external act
+        of violence, but as the probable source of it. The hypothesis that the attack had been perpetrated by right-wing
+        extremist actors operating outside the community was not pursued with any institutional seriousness. And that
+        even though The victims suggested such already during their initial interrogation.
+        <br><br>
+        Investigative attention was instead directed towards the community living and working at Keupstraße itself.
+        Police strongly suggested the motive to have its origin in organised crime and gang violence between kurdish and
+        turkish citizens.
+        <br><br>
+        This orientation was not incidental. It reflected a deeper ideological assumption, consistent with the logic of
+        neo-racism and xenophobia, whereby migrantised communities are presumed to generate their own endangerment.
+        <br><br>
+        The structural inability, or unwillingness, to conceive of right-wing terrorist violence directed against a
+        Turkish and Kurdish community as a primary investigative hypothesis is itself a manifestation of structural
+        racism operating within institutional practice.
+        <br><br>
+        The exercise of institutional power extended beyond the police. The Tax and Finance Office issued
+        disproportionate financial penalties to business owners in Keupstraße. The Customs Office/Ordnungsamt conducted
+        regular visits to the area. The cumulative pressure exerted by multiple state agencies over several years
+        constituted a sustained pattern of discrimination against a community that had already endured a terrorist
+        attack. The financial and social consequences were severe. Many businesses in Keupstraße were forced to close in
+        the years following the attack, unable to withstand the combined burden of economic pressure, prolonged
+        uncertainty, and the damage caused by years of public suspicion.
+        <br><br>
+        Political actors and the media played a significant role in shaping that climate of suspicion. In the immediate
+        aftermath of the attack, leading politicians publicly and rapidly ignored a right-wing terrorist motive,
+        directing suspicion instead toward organised crime within the community. This premature dismissal legitimised
+        the investigative approach taken by the police and removed public pressure for alternative lines of inquiry.
+        Media coverage reinforced this narrative. Rather than questioning the conduct of the investigation or
+        representing the interests of the victims, much of the press reproduced the framing of Keupstraße as a site of
+        criminal activity. The use of terms such as kebab-murders/Döner-Morde further supported that narrative.
+        <br><br>
+        The self-exposure of the NSU on 4 November 2011, following the deaths of Uwe Mundlos and Uwe Böhnhardt and Beate
+        Zschäpe's destruction of the group's shared residence in Zwickau, rendered the scale of the investigative
+        failure a matter of public record. Within days, an employee of the Office for the Protection of the
+        Constitution/Verfassungsschutz had unlawfully destroyed files pertaining to the Keupstraße investigation and the
+        NSU in general. An act that can only be understood as an attempt to suppress evidence of prior institutional
+        misconduct.
+        </span>
+            <span class="lang de">Als die Nagelbombe am 9. Juni 2004 in der Keupstraße detonierte und zweiundzwanzig Menschen verletzte, vier davon schwer, waren die Institutionen des Staates verpflichtet, die Opfer zu schützen und die Verantwortlichen zu verfolgen. Was stattdessen folgte, war ein dramatisches Versagen des deutschen Rechtssystems und eine siebenjährige Umkehrung der Täter- und Opferrollen.
+  <br><br>
+Am Abend des Terroranschlags wurden Überlebende zum Polizeipräsidium gebracht und verhört. Abdullah Ö., selbst unter den Verletzten, wurde aufgefordert, seine Kleidung für Untersuchungen abzugeben, eine Speichelprobe zu liefern und sich Verfahren zu unterziehen, die üblicherweise auf Personen angewendet werden, die unter dem Verdacht einer Straftat stehen.
+  <br><br>
+Der von Anfang an angewandte Ermittlungsrahmen behandelte die Gemeinschaft nicht als Opfer einer von außen kommenden Gewalttat, sondern als deren wahrscheinliche Quelle. Die Hypothese, dass der Anschlag von rechtsextremistischen Akteuren außerhalb der Gemeinschaft verübt worden sein könnte, wurde mit keinerlei institutionellem Ernst verfolgt. Und das, obwohl die Opfer bereits während ihrer ersten Befragung entsprechende Hinweise gegeben hatten.
+  <br><br>
+Die Ermittlungsaufmerksamkeit richtete sich stattdessen gegen die in der Keupstraße lebende und arbeitende Gemeinschaft selbst. Die Polizei legte nahe, dass das Motiv seinen Ursprung in organisierter Kriminalität und Bandengewalt zwischen kurdischen und türkischen Staatsangehörigen habe.
+  <br><br>
+Diese Ausrichtung war kein Zufall. Sie spiegelte eine tiefere ideologische Annahme wider, die mit der Logik des Neo-Rassismus und der Fremdenfeindlichkeit übereinstimmt, wonach migrantisierte Gemeinschaften als Verursacher ihrer eigenen Gefährdung betrachtet werden.
+Die strukturelle Unfähigkeit oder Unwilligkeit, rechtsextremistische Terrorgewalt gegen eine türkische und kurdische Gemeinschaft als primäre Ermittlungshypothese in Betracht zu ziehen, ist selbst eine Manifestation von strukturellem Rassismus, der innerhalb der institutionellen Praxis wirkt.
+  <br><br>
+Die Ausübung institutioneller Macht erstreckte sich über die Polizei hinaus. Das Finanzamt verhängte unverhältnismäßige Geldbußen gegen Geschäftsinhaber in der Keupstraße. Das Ordnungsamt führte regelmäßige Besuche in dem Gebiet durch. Der kumulative Druck, den mehrere staatliche Behörden über mehrere Jahre ausübten, stellte ein anhaltendes Muster der Diskriminierung gegenüber einer Gemeinschaft dar, die bereits einen Terroranschlag erlitten hatte. Die finanziellen und sozialen Folgen waren schwerwiegend. Viele Geschäfte in der Keupstraße sahen sich in den Jahren nach dem Anschlag gezwungen zu schließen, da sie der kombinierten Last aus wirtschaftlichem Druck, anhaltender Ungewissheit und dem Schaden, den jahrelanger öffentlicher Verdacht verursacht hatte, nicht standhalten konnten.
+  <br><br>
+Politische Akteure und die Medien spielten eine bedeutende Rolle bei der Formung dieses Klimas des Verdachts. Unmittelbar nach dem Anschlag schlossen führende Politiker öffentlich und schnell ein rechtsextremistisches Tatmotiv aus und lenkten den Verdacht stattdessen auf organisierte Kriminalität innerhalb der Gemeinschaft. Diese voreilige Zurückweisung legitimierte den von der Polizei eingeschlagenen Ermittlungsansatz und beseitigte den öffentlichen Druck für alternative Ermittlungsansätze. Die Medienberichterstattung verstärkte diese Erzählung. Anstatt die Durchführung der Ermittlungen zu hinterfragen oder die Interessen der Opfer zu vertreten, reproduzierte ein Großteil der Presse die Rahmung der Keupstraße als Ort krimineller Aktivität. Die Verwendung von Begriffen wie Kebab-Morde / Döner-Morde prägte die Erzählung.
+  <br><br>
+Die Selbstenttarnung des NSU am 4. November 2011, nach dem Tod von Uwe Mundlos und Uwe Böhnhardt sowie Beate Zschäpes Zerstörung der gemeinsamen Unterkunft der Gruppe in Zwickau, machte das Ausmaß des Ermittlungsversagens zur öffentlich bekannten Tatsache. Innerhalb weniger Tage hatte ein Mitarbeiter des Bundesamtes für Verfassungsschutz rechtswidrig Akten vernichtet, die die Ermittlungen zur Keupstraße und den NSU im Allgemeinen betrafen. Eine Handlung, die nur als Versuch verstanden werden kann, Beweise für vorheriges institutionelles Fehlverhalten zu unterdrücken.</span>
+            <span class="lang tr">Onları ciddiye almak bir yana, devletin kurumları mağdurları korumakla ve sorumluları kovuşturmakla yükümlüydü. Bunun yerine yaşananlar, Alman hukuk sisteminin dramatik bir başarısızlığı ve yedi yıl süren fail ile mağdur rollerinin tersine çevrilmesiydi.
+           Terör saldırısının gerçekleştiği akşam, hayatta kalanlar polis merkezine götürüldü ve sorguya çekildi. Yaralılar arasında bulunan Abdullah Ö. de giysilerini test amacıyla teslim etmek, tükürük örneği vermek ve normalde suç şüphesi taşıyan bireylere uygulanan prosedürlere tabi olmak zorunda bırakıldı.
+          <br><br>
+         Başından itibaren uygulanan soruşturma çerçevesi, topluluğu dışarıdan gelen bir şiddet eyleminin mağduru olarak değil, muhtemelen onun kaynağı olarak değerlendirdi. Saldırının topluluk dışında faaliyet gösteren aşırı sağcı aktörler tarafından gerçekleştirilmiş olabileceği hipotezi, kurumsal düzeyde ciddiye alınmadı. Üstelik bu, mağdurların ilk ifadelerinde zaten bu yönde beyanlarda bulunmuş olmalarına karşın böyle oldu.
+        <br><br>
+         Soruşturma odağı, Keupstraße'de yaşayan ve çalışan topluluğun kendisine yöneldi. Polis, güdünün Kürt ve Türk vatandaşlar arasındaki örgütlü suç ve çete şiddetinde yattığını güçlü biçimde ima etti.
+       <br><br>
+       Bu yönelim tesadüfi değildi. Göçmenleştirilmiş toplulukların kendi tehlikelerini bizzat yarattığının varsayıldığı neo-ırkçılık ve yabancı düşmanlığının mantığıyla örtüşen daha derin ideolojik bir varsayımı yansıtıyordu.
+        <br><br>
+       Türk ve Kürt bir topluluğa yönelik aşırı sağcı terör şiddetini birincil soruşturma hipotezi olarak kavrayamamak ya da buna yanaşmamak, bizzat başlı başına kurumsal pratik içinde işleyen yapısal ırkçılığın bir tezahürüdür.
+        <br><br>
+       Kurumsal güç kullanımı polisle sınırlı kalmadı. Vergi ve Maliye Dairesi, Keupstraße'deki işyeri sahiplerine orantısız mali cezalar uyguladı. Gümrük İdaresi/Düzeni Sağlama Makamı bölgeye düzenli ziyaretler gerçekleştirdi. Birden fazla devlet kuruluşunun yıllarca uyguladığı bu kümülatif baskı, çoktan bir terör saldırısına maruz kalmış bir topluluğa yönelik süregelen bir ayrımcılık örüntüsü oluşturdu. Mali ve toplumsal sonuçlar ağır oldu. Keupstraße'deki pek çok işyeri, saldırının ardından geçen yıllarda ekonomik baskı, uzayan belirsizlik ve yıllarca süren kamuoyu şüphesinin yol açtığı hasarın birleşik yükünü kaldıramayarak kapanmak zorunda kaldı.
+       <br><br>
+      Siyasi aktörler ve medya, bu şüphe ikliminin biçimlenmesinde belirleyici bir rol oynadı. Saldırının hemen ardından önde gelen siyasetçiler, aşırı sağcı terör güdüsünü alenen ve aceleyle dışlayarak şüpheyi topluluk içindeki örgütlü suça yöneltti. Bu erken kapatma girişimi, polisin benimsediği soruşturma yaklaşımını meşrulaştırdı ve alternatif soruşturma hatları üzerindeki kamuoyu baskısını ortadan kaldırdı. Medya haberleri bu anlatıyı pekiştirdi. Basının büyük bir bölümü, soruşturmanın yürütümünü sorgulamak ya da mağdurların çıkarlarını temsil etmek yerine, Keupstraße'yi suç faaliyetinin mekânı olarak konumlandıran çerçeveyi yeniden üretti. "Kebap cinayetleri / Döner-Morde" gibi terimlerin kullanımı bu anlatıyı şekillendirdi.
+                <br><br>
+               NSU'nun 4 Kasım 2011'de Uwe Mundlos ve Uwe Böhnhardt'ın ölümlerinin ve Beate Zschäpe'nin Zwickau'daki ortak konutu tahrip etmesinin ardından kendiliğinden deşifre olması, soruşturma başarısızlığının boyutunu kamuoyunun gözü önüne serdi. Günler içinde, Anayasayı Koruma Dairesi / Verfassungsschutz'un bir çalışanı, Keupstraße soruşturmasına ve genel olarak NSU'ya ilişkin dosyaları hukuka aykırı biçimde imha etti. Bu eylem, ancak önceki kurumsal ihmale dair kanıtları örtbas etme girişimi olarak anlaşılabilir.
+            </span>
+        </p>
+    </div>
+
+
+    <div class="written-content">
+        <h1 class="written-content title">
+            <span class="lang en">Summary</span>
+            <span class="lang de" style="display:none">Zusammenfassung</span>
+            <span class="lang tr" style="display:none">Özet</span>
+        </h1>
+        <br>
+        <p class="written-content body-text">
+        <span class="lang en">The events in Keupstraße do not constitute a narrative of isolated investigative error.
+        They constitute, rather, a case study in the architecture of institutional power and in the ways that <a
+                    href="glossar.html#glossar-structuralRacism">structural-racism</a>, <a
+                    href="glossar.html#glossar-institutionalRacism">institutional-racism</a>, and <a
+                    href="glossar.html#glossar-neoRacism">neo-racism</a> are not exceptional features of the state, but routine
+        dimensions of their operation. The case illustrates the manner in which <a
+                    href="glossar.html#glossar-bias">bias</a> distorts institutional perception,
+        how ideology determines whose suffering is rendered legible and whose is not, and how the intersection of
+        <a href="glossar.html#glossar-classism">classism</a> and xenophobia produces conditions in which certain
+        communities are rendered structurally unprotectable
+        by the very institutions nominally charged with their protection.
+        <br><br>
+        The <a href="glossar.html#glossar-discrimination">discrimination</a> sustained by the residents and business
+        owners of Keupstraße meaning the interrogations, the
+        surveillance, the financial penalties, the systematic inversion of victim and perpetrator was not produced by
+        the conduct of isolated individuals acting contrary to institutional norms. It was produced by a <a
+                    href="glossar.html#glossar-system">system</a> whose
+        norms were themselves shaped by the unequal social structure it purported to administer impartially. A <a
+                    href="glossar.html#glossar-system">system</a> in
+        which migrantised communities and PoC occupy a position structurally defined by their exclusion from the
+        dominant relations of power dynamics.
+        <br><br>
+        Whether the events documented here are categorised as systemic failure or systemic function depends ultimately
+        upon the standards against which the <a href="glossar.html#glossar-system">system</a> is evaluated, and upon
+        whose interests are taken as the reference
+        point for that evaluation. What the historical record establishes is that the residents and
+        business owners of Keupstraße, who constructed their livelihoods and their community on that street, were
+        denied the justice to which they were entitled. The distance between that entitlement and the
+        response they instead received is precisely what this project seeks to document and to make visible
+        alongside highlighting the different powers involved beyond the police and government.
+        </span>
+            <span class="lang de">
+              Die Ereignisse in der Keupstraße stellen keine Erzählung isolierter Ermittlungsfehler dar. Sie stellen vielmehr eine Fallstudie in der Architektur institutioneller Macht dar und in der Art und Weise, wie struktureller Rassismus, institutioneller Rassismus und Neo-Rassismus keine Ausnahmeerscheinungen des Staates sind, sondern routinemäßige Dimensionen seines Funktionierens. Der Fall veranschaulicht, wie Voreingenommenheit die institutionelle Wahrnehmung verzerrt, wie Ideologie bestimmt, wessen Leid als erkennbar gilt und wessen nicht, und wie die Verschränkung von Klassismus und Fremdenfeindlichkeit Bedingungen hervorbringt, unter denen bestimmte Gemeinschaften von den Institutionen, die nominell mit ihrem Schutz betraut sind, strukturell unschützbar gemacht werden.
+<br><br>
+Die Diskriminierung, die die Bewohnerinnen und Bewohner sowie die Geschäftsinhaber der Keupstraße erlitten, gemeint sind die Verhöre, die Überwachung, die finanziellen Strafen, die systematische Umkehrung von Opfer- und Täterrolle, wurde nicht durch das Verhalten einzelner Personen erzeugt, die entgegen institutionellen Normen handelten. Sie wurde durch ein System erzeugt, dessen Normen selbst durch die ungleiche Sozialstruktur geprägt waren, die es vorgeblich unparteiisch zu verwalten beanspruchte. Ein System, in dem migrantisierte Gemeinschaften und People of Color eine Position einnehmen, die strukturell durch ihren Ausschluss aus den dominanten Verhältnissen der Machtdynamiken definiert ist.
+<br><br>
+Ob die hier dokumentierten Ereignisse als systemisches Versagen oder als systemische Funktion eingestuft werden, hängt letztlich von den Maßstäben ab, anhand derer das *System* bewertet wird, und davon, wessen Interessen als Referenzpunkt für diese Bewertung herangezogen werden. Was der historische Befund belegt, ist, dass den Bewohnerinnen und Bewohnern sowie den Geschäftsinhabern der Keupstraße, die ihre Existenzgrundlagen und ihre Gemeinschaft in dieser Straße aufgebaut haben, die Gerechtigkeit verweigert wurde, auf die sie Anspruch hatten. Die Distanz zwischen diesem Anspruch und der Reaktion, die sie stattdessen erfuhren, ist genau das, was dieses Projekt zu dokumentieren und sichtbar zu machen sucht, gemeinsam mit der Hervorhebung der verschiedenen Mächte, die über die Polizei und die Regierung hinaus beteiligt waren.
+            </span>
+            <span class="lang tr">
+                Keupstraße'deki olaylar, izole bir soruşturma hatasının öyküsünü oluşturmaz. Aksine, kurumsal iktidarın yapısı ve
+             <br><br>
+                yapısal ırkçılık , kurumsal ırkçılık ve neo-ırkçılık ın devletin istisnai özellikleri değil, işleyişinin rutin boyutları olduğu konusunda bir vaka çalışması oluşturur. Bu vaka, önyargının kurumsal algıyı nasıl çarpıttığını, ideolojinin kimin acılarının okunaklı hale getirileceğini ve kimin acılarının getirilmeyeceğini nasıl belirlediğini ve sınıfçılık ile yabancı düşmanlığının kesişiminin, belirli toplulukların, nominal olarak onların korunmasından sorumlu olan kurumlar tarafından yapısal olarak korunamaz hale getirildiği koşulları nasıl yarattığını göstermektedir.
+               <br><br>
+                Keupstraße sakinleri ve iş sahiplerinin maruz kaldığı ayrımcılık, yani sorgulamalar, gözetim, mali cezalar, kurban ve failin sistematik olarak tersine çevrilmesi, kurumsal normlara aykırı davranan münferit bireylerin davranışlarından kaynaklanmamıştır. Bu, normları, tarafsız bir şekilde yönetmeyi amaçladığı eşitsiz sosyal yapı tarafından şekillendirilen bir sistem tarafından üretilmiştir. Göçmen toplulukların ve PoC'nin, egemen güç dinamiklerinden dışlanarak yapısal olarak tanımlanan bir konumda bulundukları bir sistem.
+                 <br><br>
+              Burada belgelenen olayların sistemik başarısızlık mı yoksa sistemik işlev mi olarak sınıflandırılacağı, nihayetinde sistemin değerlendirildiği standartlara ve bu değerlendirmenin referans noktası olarak kimin çıkarlarının alındığına bağlıdır. Tarihsel kayıtların ortaya koyduğu şey, Keupstraße'de geçim kaynaklarını ve topluluklarını kuran sakinlerin ve iş sahiplerinin hak ettikleri adaletten mahrum bırakıldıklarıdır. Bu hak ile bunun yerine aldıkları yanıt arasındaki mesafe, bu projenin belgelemeye ve görünür kılmaya çalıştığı şeydir. Proje, polis ve hükümetin ötesinde işin içinde olan farklı güçleri de vurgulamaktadır.
+            </span>
+        </p>
+    </div>
+
+</div>
+<div class="image-overlay" id="imageOverlay" onclick="closeImageOverlay()">
+    <img id="overlayImage" src="" alt="Project Description">
+</div>
+
+<div class="footer">
+    © 2026 Investigating Keupstraße. Do No Harm License.
+</div>
+
+
+</body>
+</html>

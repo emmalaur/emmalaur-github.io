@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+          rel="stylesheet">
+    <link href="../style/timeline.css" rel="stylesheet">
+    <link href="../style/styles.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="header">
+    <div class="icon" onclick="toggleNavbar()">☰</div>
+    SYSTEM[VERSAGEN] IN DER KEUPSTRASSE
+    <a class="header-link" target="_blank" rel="noopener noreferrer"
+       href="https://www.keupstrasse-ist-ueberall.de/spenden/">SUPPORT KEUPSTRAßE</a>
+</div>
+<div class="navbar" id="navbar">
+    <div class="navbar-header">The Project</div>
+    <a rel="mainpage" href="index.html">MAIN</a>
+    <a style="cursor: pointer" onclick="openImageOverlay('../../resources/images/projectDescription.png'  )"> PROJECT
+        DESCRIPTION</a>
+    <a rel="timeline" href="../template/timeline.html">TIMELINE</a>
+    <a href="mediaAndResources.html">MEDIA & RESOURCES</a>
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://www.notion.so/Investigating-Keupstra-e-2c64a3f7f37280a4aee7d91c912a2e72?source=copy_link">DOCUMENTATION</a>
+    <a href="glossar.html">GLOSSAR</a>
+    <br>
+    <div class="navbar-header">Programme</div>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.keupstrasse-ist-ueberall.de/#news">EXHIBITIONS</a>
+    <br>
+    <div class="navbar-header">About</div>
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://github.com/emmalaur/emmalaur-github.io?tab=License-1-ov-file">SOURCE CODE</a>
+    <a href="license.html">LICENSE</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+
+
+<div class="body-timeline">
+    <div id="chart-wrap">
+        <svg id="timeline"></svg>
+    </div>
+
+    <div class="button-and-legend">
+        <div class="button-container">
+            <button id="add-btn" onclick="openAddForm()">Add Event</button>
+            <button id="grid-toggle-btn" onclick="toggleGrid()">Hide Grid</button>
+            <button id="line-toggle-btn" onclick="toggleLines()">Hide Lines</button>
+
+
+        </div>
+    </div>
+
+    <div id="line-example">
+        <table class="line-example-table">
+            <tr>
+                <td>LINE TYPE</td>
+                <td>MEANING</td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <svg width="100" height="20">
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="black" stroke-width="2"/>
+                    </svg>
+                </td>
+                <td>
+                    Full line — direct, confirmed connection: One event directly caused or triggered another
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <svg width="100" height="20">
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="black" stroke-width="2" stroke-dasharray="4 4"/>
+                    </svg>
+                </td>
+
+                <td>
+                    Dashed line — indirect or suspected connection: One event may have contributed to another, but the
+                    relationship is not definitively established
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+
+                <td>
+                    No Line - no known connection: There is no known or suspected relationship between the events
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Important note: the connections drawn, or absence thereof, are subjective, as there may well be
+                    information that is at this point unknown to the author.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Add Node Modal -->
+    <div id="form-overlay">
+        <div id="form-modal">
+            <div id="form-body">
+                <table class="form-table">
+                    <tr>
+                        <td>
+                            <button id="form-close-btn" onclick="closeAddForm()">✕</button>
+                        </td>
+                        <td colspan="2"> Submit Event Suggestion</td>
+                    </tr>
+                    <tr>
+                        <td><label for="f-date">Date</label></td>
+                        <td><label for="f-category">Category</label></td>
+                        <td><label for="f-title">Title</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" id="f-date" min="2004-01-01" max="2011-12-31" value="2005-01-01"></td>
+                        <td>
+                            <select id="f-category">
+                                <option>Government</option>
+                                <option>Federal Office</option>
+                                <option>The City of Cologne</option>
+                                <option>Tax Office</option>
+                                <option>Media</option>
+                                <option>Police</option>
+                                <option>NSU</option>
+                                <option>other</option>
+                            </select>
+                        </td>
+                        <td><input type="text" id="f-title" placeholder="Event title"></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="f-text">Description</label></td>
+                        <td colspan="3"><textarea id="f-text" placeholder="Describe the event…"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="f-source">Source URL (you must provide some form of proof.)</label></td>
+                        <td colspan="3"><input type="url" id="f-source" placeholder="https://…"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="f-image">Image URL (optional)</label></td>
+                        <td colspan="3"><input type="url" id="f-image" placeholder="https://…"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">
+                            <button class="btn-cancel" onclick="closeAddForm()">Cancel</button>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn-send" onclick="submitNodeByEmail()">Send Request</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay">
+        <div id="popup">
+            <div id="popup-header"></div>
+            <button id="close-btn" onclick="closePopup()">✕</button>
+            <table class="timeline-table" id="popup-table"></table>
+        </div>
+    </div>
+</div>
+
+<script src="../script/main.js"></script>
+<script src="../script/timeline.js"></script>
+
+<div class="image-overlay" id="imageOverlay" onclick="closeImageOverlay()">
+    <img id="overlayImage" src="" alt="Project Description">
+</div>
+</body>
+</html>
